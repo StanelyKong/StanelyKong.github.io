@@ -135,9 +135,9 @@
              border-radius: 0; /* 图集中图片无需圆角 */
         }
         
-        /* --- 返回顶部按钮样式 --- */
+        /* --- 返回顶部按钮样式 (已修复) --- */
         #back-to-top {
-            display: none; 
+            display: none; /* 修正: 保持初始隐藏状态，等待JS切换为flex */
             position: fixed;
             bottom: 30px;
             right: 30px;
@@ -149,9 +149,9 @@
             border: none;
             border-radius: 50%;
             cursor: pointer;
-            display: flex;
+            /* 居中属性，等待JS切换为display:flex后生效 */
             justify-content: center;
-            align-items: center;
+            align-items: center; 
             font-size: 24px;
             opacity: 0.8;
             transition: all 0.3s;
@@ -251,9 +251,8 @@
 
         // 当滚动超过 300px 时显示按钮
         window.onscroll = function() {
-            // 确保按钮只在页面滚动时显示，而非刚加载时
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                // 使用 flex 来显示按钮并确保内容居中
+                // 当显示时，必须设置为 'flex' 才能实现居中
                 backToTopButton.style.display = "flex"; 
             } else {
                 backToTopButton.style.display = "none";

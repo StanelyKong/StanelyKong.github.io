@@ -207,7 +207,7 @@
 
         /* --- 8. 返回顶部按钮样式 --- */
         #back-to-top {
-            display: none; 
+            display: none; /* 修正: 保持初始隐藏状态，等待JS切换为flex */
             position: fixed;
             bottom: 30px;
             right: 30px;
@@ -219,9 +219,9 @@
             border: none;
             border-radius: 50%;
             cursor: pointer;
-            display: flex;
+            /* 这些属性是用来居中“↑”的，当JS切换为display:flex后生效 */
             justify-content: center;
-            align-items: center;
+            align-items: center; 
             font-size: 24px;
             opacity: 0.8;
             transition: all 0.3s;
@@ -343,7 +343,7 @@
 
                     <a href="projects/huikang.html" class="work-card">
                         <div class="card-img">
-                            <img src="https://picsum.photos/id/1020/800/600" alt="惠康医药">
+                            <img src="https://picsum.photos/id/1020/800/600" alt="HC原康医药">
                         </div>
                         <div class="card-info">
                             <h3>惠康医药标志设计</h3>
@@ -517,7 +517,7 @@
         // 当滚动超过 300px 时显示按钮
         window.onscroll = function() {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                // 使用 flex 来显示按钮并确保内容居中
+                // 当显示时，必须设置为 'flex' 才能实现居中
                 backToTopButton.style.display = "flex"; 
             } else {
                 backToTopButton.style.display = "none";
