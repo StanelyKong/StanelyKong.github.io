@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>设计师｜江振世 Stanley Kong</title>
     <style>
-        /* --- 1. 全局变量与重置 (略) --- */
+        /* --- 1. 全局变量与重置 --- */
         :root {
             --bg-body: #ffffff;
             --bg-light: #f8f9fa;
@@ -31,7 +31,7 @@
         ul { list-style: none; }
         img { width: 100%; height: auto; display: block; object-fit: cover; }
 
-        /* --- 2. 通用组件 (略) --- */
+        /* --- 2. 通用组件 --- */
         .container {
             width: 90%;
             max-width: var(--max-width);
@@ -46,7 +46,7 @@
         
         .section-header { margin-bottom: 60px; }
         
-        /* 主标题样式 (保持第五版，极简大气) */
+        /* 标题样式：极简大气 */
         .section-header h2 {
             font-size: 3.2rem; 
             font-weight: 900; 
@@ -135,8 +135,11 @@
             .btn { padding: 10px 25px; }
         }
 
-        /* --- 5. 作品集 (略) --- */
-        .portfolio-category { margin-bottom: 80px; }
+        /* --- 5. 作品集 (精细化排版) --- */
+        .portfolio-category { 
+            margin-bottom: 80px; 
+        }
+
         .category-title-en {
             font-size: 0.9rem;
             color: #999;
@@ -153,6 +156,7 @@
             padding-bottom: 10px;
             border-bottom: 1px solid var(--border); 
         }
+
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
@@ -206,7 +210,7 @@
         }
 
 
-        /* --- 6. 简历与经历 (工作履历主体排版，恢复第四版设计) --- */
+        /* --- 6. 简历与经历 (第二版履历样式) --- */
         #about { background: var(--bg-light); } 
         
         .resume-layout {
@@ -228,14 +232,13 @@
             margin-bottom: 20px;
         }
         
-        /* 核心优势/教育背景列表样式 (第四版设计) */
         .core-list li {
             margin-bottom: 10px;
             text-align: left;
             padding-left: 20px;
             position: relative;
             max-width: 400px;
-            margin-left: auto; /* 居中对齐，符合第四版结构 */
+            margin-left: auto;
             margin-right: auto;
         }
         .core-list li::before {
@@ -247,64 +250,73 @@
             line-height: 1.6;
         }
 
+        /* 核心修改：移除时间轴样式，改为块状列表 */
         .timeline-side {
             padding: 0; 
             border-radius: 0;
             box-shadow: none;
         }
-
-        /* 履历时间轴样式 (第四版设计) */
         .timeline-item {
-            margin-bottom: 50px; 
-            padding-left: 25px; 
-            border-left: 1px solid #dddddd; /* 极细分隔线 */
+            margin-bottom: 40px; 
+            padding-left: 0; 
+            border-left: none; 
             position: relative;
             padding-top: 5px;
             padding-bottom: 5px; 
         }
         .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -6px; /* 缩小圆点 */
-            top: 10px; 
-            width: 12px;
-            height: 12px;
-            background: var(--accent);
-            border-radius: 50%;
-            border: 3px solid var(--bg-light); 
-            box-sizing: border-box;
+            content: none; 
         }
-        
-        /* 履历日期样式 (第四版设计) */
+
+        /* 履历信息排版：紧凑块状样式 */
         .timeline-date {
             font-size: 0.9rem;
             color: var(--text-sub);
-            margin-bottom: 15px; /* 增加日期与职位间距 */
+            margin-bottom: 15px; 
             font-weight: 500;
-            letter-spacing: 1px;
+            letter-spacing: 0; 
             display: block;
         }
-        
-        /* 履历职位样式 (第四版设计) */
+
         .timeline-role {
-            font-size: 1.4rem; /* 职位名称最大化 */
-            font-weight: 900; 
+            font-size: 1.2rem; 
+            font-weight: 800; 
             line-height: 1.2;
             margin-bottom: 5px;
+            color: var(--text-main);
         }
-        /* 履历公司样式 (第四版设计) */
         .timeline-company {
             font-size: 1rem;
-            color: #999; /* 柔和的公司名颜色 */
-            font-weight: 400; /* 细体，与职位形成强烈对比 */
-            margin-bottom: 15px;
+            color: #999; 
+            font-weight: 400; 
+            margin-bottom: 5px; 
             display: block;
         }
         .timeline-desc {
             font-size: 0.95rem;
             color: var(--text-main);
+            padding-left: 0;
+            line-height: 1.6;
         }
-
+        .timeline-desc ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+        .timeline-desc li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 8px;
+            font-size: 0.95rem; 
+        }
+        .timeline-desc li::before {
+            content: '●'; 
+            color: var(--accent); 
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
         /* **精简整合的早期履历样式** (略) */
         .timeline-summary {
             margin-top: 60px; 
@@ -333,6 +345,7 @@
             font-size: 0.9rem;
             color: #999;
         }
+
 
         /* --- 7. 联系页 (略) --- */
         #contact { text-align: center; }
@@ -503,7 +516,7 @@
                         <li><strong>品牌全案：</strong>主导50+项目(主视觉/VI/落地)。</li>
                         <li><strong>AI提效：</strong>熟练Midjourney/Stable Diffusion，优化设计流程。</li>
                         <li><strong>多语言：</strong>国语、粤语、英语(CET-4)。</li>
-                        <li><strong>管理经验：：</strong>指导初级设计师，协助跨部门提案竞标。</li>
+                        <li><strong>管理经验：</strong>指导初级设计师，协助跨部门提案竞标。</li>
                     </ul>
                     <br>
                     <h4>教育背景</h4>
@@ -527,43 +540,51 @@
                 <div class="timeline-side">
                     
                     <div class="timeline-item">
-                        <span class="timeline-date">2023.03 – 2024.10</span>
                         <h3 class="timeline-role">高级设计师(P5)</h3>
                         <span class="timeline-company">同道精英(天津)信息技术有限公司|广州分公司</span>
-                        <p class="timeline-desc">
-                            ● 使用Midjourney生成主视觉创意原型，提案效率提升30%；<br>
-                            ● 为平安产险2023全球校招设计主视觉，覆盖候选人10万+；<br>
-                            ● 年均输出主视觉方案50+套，服务TCL、平安产险、星际悦动等。
-                        </p>
+                        <span class="timeline-date">2023.03 – 2024.10</span>
+                        <div class="timeline-desc">
+                            <ul>
+                                <li>使用Midjourney生成主视觉创意原型，提案效率提升30%。</li>
+                                <li>为平安产险2023全球校招设计主视觉，覆盖候选人10万+。</li>
+                                <li>年均输出主视觉方案50+套，服务TCL、平安产险、星际悦动等。</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="timeline-item">
-                        <span class="timeline-date">2021.5 – 2021.8</span>
                         <h3 class="timeline-role">美术指导</h3>
                         <span class="timeline-company">广州维动广告传媒有限公司</span>
-                        <p class="timeline-desc">
-                            ● 品牌升级：完成维动集团、睇房通LOGO焕新，提升品牌识别度；<br>
-                            ● 流程优化：规范VI手册制定流程，缩短交付周期。
-                        </p>
+                        <span class="timeline-date">2021.5 – 2021.8</span>
+                        <div class="timeline-desc">
+                            <ul>
+                                <li>品牌升级：完成维动集团、睇房通LOGO焕新，提升品牌识别度。</li>
+                                <li>流程优化：规范VI手册制定流程，缩短交付周期。</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="timeline-item">
-                        <span class="timeline-date">2018.3 – 2020.8</span>
                         <h3 class="timeline-role">美术指导</h3>
                         <span class="timeline-company">北京网聘咨询有限公司(智联招聘)|深圳分公司</span>
-                        <p class="timeline-desc">
-                            ● 主导万科集团、佳兆业等企业招聘视觉设计；<br>
-                            ● 设计方案助力销售团队成功竞标，单一长图文阅读量最高可达10万+；<br>
-                            ● 团队协作：指导初级设计师，协助跨部门提案竞标。
-                        </p>
+                        <span class="timeline-date">2018.3 – 2020.8</span>
+                        <div class="timeline-desc">
+                            <ul>
+                                <li>主导万科集团、佳兆业等企业招聘视觉设计。</li>
+                                <li>设计方案助力销售团队成功竞标，单一长图文阅读量最高可达10万+。</li>
+                                <li>团队协作：指导初级设计师，协助跨部门提案竞标。</li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="timeline-item">
-                        <span class="timeline-date">2015.7 – 2018.3</span>
                         <h3 class="timeline-role">早期设计经验整合</h3>
                         <span class="timeline-company">犀牛传播、时尚商业地产、作为创意设计</span>
-                        <p class="timeline-desc">
-                            ● **核心能力：** 品牌VI系统设计、平面宣传、物料制作和跟进。<br>
-                            ● **主要项目：** 中海地产提案、深记糕点/十八金燕品牌VI、万科城户外广告。
-                        </p>
+                        <span class="timeline-date">2015.7 – 2018.3</span>
+                        <div class="timeline-desc">
+                             <ul>
+                                <li>**核心能力：** 品牌VI系统设计、平面宣传、物料制作和跟进。</li>
+                                <li>**主要项目：** 中海地产提案、深记糕点/十八金燕品牌VI、万科城户外广告。</li>
+                             </ul>
+                        </div>
                     </div>
                     
                 </div>
@@ -594,7 +615,7 @@
     <button id="back-to-top" title="返回顶部" style="display: none;">↑</button>
 
     <script>
-        // JS 逻辑 (略)
+        // 平滑滚动逻辑 (导航栏点击)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -604,6 +625,7 @@
             });
         });
 
+        // 返回顶部按钮的显示/隐藏和点击事件 JS 逻辑
         const backToTopButton = document.getElementById('back-to-top');
         window.onscroll = function() {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
