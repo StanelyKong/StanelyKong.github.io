@@ -140,25 +140,16 @@
             .btn { padding: 10px 25px; }
         }
 
-        /* --- 5. 作品集 (分类排版) --- */
+        /* --- 5. 作品集 (略) --- */
         .portfolio-category { margin-bottom: 80px; }
-
         .grid-3 {
             display: grid;
-            /* 确保在大屏幕上维持三列，最小宽度 350px */
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
-        /* 移动端优化：作品网格布局 */
         @media (max-width: 768px) {
-             .grid-3 {
-                /* 手机端强制单列，保证卡片全宽显示 */
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
+             .grid-3 { grid-template-columns: 1fr; gap: 20px; }
         }
-
-
         .work-card {
             background: #fff;
             border-radius: 8px;
@@ -168,36 +159,12 @@
             border: 1px solid var(--border);
         }
         .work-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-        
         .card-img { height: 260px; overflow: hidden; position: relative; }
-        /* 移动端优化：减小图片高度 */
-        @media (max-width: 768px) {
-            .card-img { height: 200px; }
-        }
-
-        /* 卡片内容 */
-        .card-info {
-             padding: 20px;
-             min-height: 150px;
-        }
-        .card-info h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            line-height: 1.3;
-        }
-        .card-info p {
-            font-size: 0.95rem;
-            color: var(--text-sub);
-            margin-bottom: 10px;
-        }
-        .tech-stack {
-            font-size: 0.8rem;
-            color: var(--accent);
-            font-weight: 500;
-            margin-top: 10px;
-        }
-        
+        @media (max-width: 768px) { .card-img { height: 200px; } }
+        .card-info { padding: 20px; min-height: 150px; }
+        .card-info h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+        .card-info p { font-size: 0.95rem; color: var(--text-sub); margin-bottom: 10px; }
+        .tech-stack { font-size: 0.8rem; color: var(--accent); font-weight: 500; margin-top: 10px; }
         .card-badge {
             position: absolute;
             top: 15px;
@@ -212,23 +179,18 @@
         }
 
 
-        /* --- 6. 简历与经历 (左右布局) --- */
+        /* --- 6. 简历与经历 (核心优化区域) --- */
         #about { background: var(--bg-light); } 
         
         .resume-layout {
             display: grid;
-            /* 桌面端：1:1.5 布局 */
             grid-template-columns: 1fr 1.5fr; 
             gap: 60px;
         }
-        /* 移动端优化：简历布局 */
+        
         @media (max-width: 768px) {
-             .resume-layout { 
-                /* 手机端改为单列堆叠 */
-                grid-template-columns: 1fr; 
-                gap: 40px;
-            }
-            .profile-side { text-align: center; } /* 个人信息居中 */
+             .resume-layout { grid-template-columns: 1fr; gap: 40px; }
+            .profile-side { text-align: center; } 
             .profile-side img { margin: 0 auto 20px auto; }
         }
 
@@ -257,23 +219,34 @@
             line-height: 1.6;
         }
 
+        /* **优化点 1：为时间轴区域增加精致感** */
+        .timeline-side {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* 增加轻微阴影 */
+        }
+
+
         /* 履历时间轴样式 */
         .timeline-item {
             margin-bottom: 40px;
-            padding-left: 15px;
+            padding-left: 20px; /* 增大左侧留白 */
             border-left: 3px solid var(--border);
             position: relative;
         }
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -8px;
+            left: -10px; /* 调整圆点位置 */
             top: 5px;
-            width: 14px;
-            height: 14px;
+            width: 17px;
+            height: 17px;
             background: var(--accent);
             border-radius: 50%;
-            border: 3px solid var(--bg-light); /* 背景色，使其看起来像一个点 */
+            border: 4px solid #fff; /* **优化点 2：圆点外加白边** */
+            outline: 2px solid var(--accent); /* **优化点 3：外圈强调** */
+            box-sizing: border-box;
         }
         .timeline-date {
             font-size: 0.9rem;
@@ -294,8 +267,34 @@
             font-size: 0.95rem;
             color: var(--text-main);
         }
+        
+        /* **优化点 4：查看早期履历按钮样式** */
+        #toggle-experience {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px 0;
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--accent);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        #toggle-experience:hover {
+            background: #e8f0ff;
+            border-color: var(--accent);
+        }
+        /* 隐藏的早期履历 */
+        .old-experience {
+            display: none;
+            /* JS 将控制其显示/隐藏 */
+        }
 
-        /* --- 7. 联系页 --- */
+
+        /* --- 7. 联系页 (略) --- */
         #contact { text-align: center; }
         .email-box {
             font-size: 2rem;
@@ -337,12 +336,8 @@
             background-color: #0056e6;
         }
         
-        /* --- 移动端适配 CSS 关键部分 --- */
         @media (max-width: 768px) {
-            /* 导航栏：隐藏链接 */
             .nav-links { display: none; } 
-            
-            /* 返回顶部按钮缩小 */
             #back-to-top {
                  bottom: 20px;
                  right: 20px;
@@ -396,36 +391,16 @@
                 <h3 class="category-title">商业主视觉(Key Visuals)</h3>
                 <div class="grid-3">
                     <a href="projects/tcl-kv.html" class="work-card">
-                        <div class="card-img">
-                            <span class="card-badge">AI辅助</span>
-                            <img src="https://picsum.photos/id/10/800/600" alt="TCL招聘主视觉">
-                        </div>
-                        <div class="card-info">
-                            <h3>TCL集团春季招聘主视觉</h3>
-                            <p>Midjourney生成创意原型，Stable Diffusion优化细节，提案效率提升30%。</p>
-                            <div class="tech-stack">#合成#AI#创意</div>
-                        </div>
+                        <div class="card-img"><span class="card-badge">AI辅助</span><img src="https://picsum.photos/id/10/800/600" alt="TCL招聘主视觉"></div>
+                        <div class="card-info"><h3>TCL集团春季招聘主视觉</h3><p>Midjourney生成创意原型，Stable Diffusion优化细节，提案效率提升30%。</p><div class="tech-stack">#合成#AI#创意</div></div>
                     </a>
                     <a href="projects/post-bank-kv.html" class="work-card">
-                        <div class="card-img">
-                            <img src="https://picsum.photos/id/12/800/600" alt="国潮插画">
-                        </div>
-                        <div class="card-info">
-                            <h3>中国邮政储蓄银行秋季招聘</h3>
-                            <p>国潮插画风格KV设计，负责全案物料延展与落地。</p>
-                            <div class="tech-stack">#插画#国潮</div>
-                        </div>
+                        <div class="card-img"><img src="https://picsum.photos/id/12/800/600" alt="国潮插画"></div>
+                        <div class="card-info"><h3>中国邮政储蓄银行秋季招聘</h3><p>国潮插画风格KV设计，负责全案物料延展与落地。</p><div class="tech-stack">#插画#国潮</div></div>
                     </a>
                     <a href="projects/pingan-kv.html" class="work-card">
-                        <div class="card-img">
-                            <span class="card-badge">科技感</span>
-                            <img src="https://picsum.photos/id/14/800/600" alt="平安产险">
-                        </div>
-                        <div class="card-info">
-                            <h3>平安产险2023全球校招</h3>
-                            <p>MidJourney生成科技感主视觉方案，覆盖候选人10万+。</p>
-                            <div class="tech-stack">#AI辅助#科技</div>
-                        </div>
+                        <div class="card-img"><span class="card-badge">科技感</span><img src="https://picsum.photos/id/14/800/600" alt="平安产险"></div>
+                        <div class="card-info"><h3>平安产险2023全球校招</h3><p>MidJourney生成科技感主视觉方案，覆盖候选人10万+。</p><div class="tech-stack">#AI辅助#科技</div></div>
                     </a>
                 </div>
             </div>
@@ -434,36 +409,16 @@
                 <h3 class="category-title">品牌识别(Brand Identity)</h3>
                 <div class="grid-3">
                     <a href="projects/weidong.html" class="work-card">
-                        <div class="card-img">
-                            <img src="https://picsum.photos/id/20/800/600" alt="维动集团 VI">
-                        </div>
-                        <div class="card-info">
-                            <h3>维动集团品牌焕新</h3>
-                            <p>完成维动集团、睇房通LOGO焕新，提升品牌识别度。</p>
-                            <div class="tech-stack">#VI系统#品牌升级</div>
-                        </div>
+                        <div class="card-img"><img src="https://picsum.photos/id/20/800/600" alt="维动集团 VI"></div>
+                        <div class="card-info"><h3>维动集团品牌焕新</h3><p>完成维动集团、睇房通LOGO焕新，提升品牌识别度。</p><div class="tech-stack">#VI系统#品牌升级</div></div>
                     </a>
-
                     <a href="projects/huikang.html" class="work-card">
-                        <div class="card-img">
-                            <img src="https://picsum.photos/id/1020/800/600" alt="HC原康医药">
-                        </div>
-                        <div class="card-info">
-                            <h3>HC原康医药标志设计</h3>
-                            <p>品牌标志设计与VI系统建立，医疗行业视觉解决方案。</p>
-                            <div class="tech-stack">#标志设计#VI系统</div>
-                        </div>
+                        <div class="card-img"><img src="https://picsum.photos/id/1020/800/600" alt="HC原康医药"></div>
+                        <div class="card-info"><h3>HC原康医药标志设计</h3><p>品牌标志设计与VI系统建立，医疗行业视觉解决方案。</p><div class="tech-stack">#标志设计#VI系统</div></div>
                     </a>
-                    
                     <a href="projects/shenji.html" class="work-card">
-                        <div class="card-img">
-                            <img src="https://picsum.photos/id/24/800/600" alt="深记糕点">
-                        </div>
-                        <div class="card-info">
-                            <h3>深记糕点/十八金燕</h3>
-                            <p>传统消费品品牌升级，包含包装设计与线下物料。</p>
-                            <div class="tech-stack">#包装#品牌</div>
-                        </div>
+                        <div class="card-img"><img src="https://picsum.photos/id/24/800/600" alt="深记糕点"></div>
+                        <div class="card-info"><h3>深记糕点/十八金燕</h3><p>传统消费品品牌升级，包含包装设计与线下物料。</p><div class="tech-stack">#包装#品牌</div></div>
                     </a>
                 </div>
             </div>
@@ -472,36 +427,16 @@
                 <h3 class="category-title">数字化体验(Digital & H5)</h3>
                 <div class="grid-3">
                     <a href="projects/vanke-long-img.html" class="work-card">
-                        <div class="card-img">
-                            <span class="card-badge">10万+阅读量</span>
-                            <img src="https://picsum.photos/id/29/800/600" alt="万科长图文">
-                        </div>
-                        <div class="card-info">
-                            <h3>万科集团校招长图文</h3>
-                            <p>设计方案助力销售团队成功竞标，长图文阅读量最高达10万+。</p>
-                            <div class="tech-stack">#长图文#排版</div>
-                        </div>
+                        <div class="card-img"><span class="card-badge">10万+阅读量</span><img src="https://picsum.photos/id/29/800/600" alt="万科长图文"></div>
+                        <div class="card-info"><h3>万科集团校招长图文</h3><p>设计方案助力销售团队成功竞标，长图文阅读量最高达10万+。</p><div class="tech-stack">#长图文#排版</div></div>
                     </a>
                     <a href="projects/citic-h5.html" class="work-card">
-                        <div class="card-img">
-                            <span class="card-badge">交互</span>
-                            <img src="https://picsum.photos/id/30/800/600" alt="中信银行H5设计">
-                        </div>
-                        <div class="card-info">
-                            <h3>中信银行信用卡中心H5</h3>
-                            <p>游戏动画交互H5，负责界面UI及动效逻辑梳理。</p>
-                            <div class="tech-stack">#H5#UI#交互</div>
-                        </div>
+                        <div class="card-img"><span class="card-badge">交互</span><img src="https://picsum.photos/id/30/800/600" alt="中信银行H5设计"></div>
+                        <div class="card-info"><h3>中信银行信用卡中心H5</h3><p>游戏动画交互H5，负责界面UI及动效逻辑梳理。</p><div class="tech-stack">#H5#UI#交互</div></div>
                     </a>
                     <a href="projects/oppein-h5.html" class="work-card">
-                        <div class="card-img">
-                            <img src="https://picsum.photos/id/129/800/600" alt="欧派家居H5">
-                        </div>
-                        <div class="card-info">
-                            <h3>欧派家居线上摄影展H5</h3>
-                            <p>扁平风格线上摄影展，适用于品牌活动宣传。</p>
-                            <div class="tech-stack">#H5#扁平设计</div>
-                        </div>
+                        <div class="card-img"><img src="https://picsum.photos/id/129/800/600" alt="欧派家居H5"></div>
+                        <div class="card-info"><h3>欧派家居线上摄影展H5</h3><p>扁平风格线上摄影展，适用于品牌活动宣传。</p><div class="tech-stack">#H5#扁平设计</div></div>
                     </a>
                 </div>
             </div>
@@ -575,31 +510,39 @@
                             ● 团队协作：指导初级设计师，协助跨部门提案竞标。
                         </p>
                     </div>
-                     <div class="timeline-item">
-                        <div class="timeline-date">2017.3 – 2018.3</div>
-                        <h3 class="timeline-role">品牌设计师</h3>
-                        <div class="timeline-company">深圳市作为创意设计有限公司</div>
-                        <p class="timeline-desc">
-                            ● 品牌设计：主导深记糕点、十八金燕等品牌VI系统设计；<br>
-                            ● 提案支持：参与中海地产Officezip联合办公空间品牌升级提案。
-                        </p>
+
+                    <div id="old-experience" class="old-experience">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2017.3 – 2018.3</div>
+                            <h3 class="timeline-role">品牌设计师</h3>
+                            <div class="timeline-company">深圳市作为创意设计有限公司</div>
+                            <p class="timeline-desc">
+                                ● 品牌设计：主导深记糕点、十八金燕等品牌VI系统设计；<br>
+                                ● 提案支持：参与中海地产Officezip联合办公空间品牌升级提案。
+                            </p>
+                        </div>
+                         <div class="timeline-item">
+                            <div class="timeline-date">2016.3 – 2017.3</div>
+                            <h3 class="timeline-role">平面设计师</h3>
+                            <div class="timeline-company">深圳时尚商业地产集团</div>
+                            <p class="timeline-desc">
+                                ● 负责深圳7号线华新站地铁商城宣传设计，跟进活动宣传及物料制作。
+                            </p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2015.7 – 2016.3</div>
+                            <h3 class="timeline-role">平面设计师</h3>
+                            <div class="timeline-company">深圳市犀牛传播有限公司</div>
+                            <p class="timeline-desc">
+                                ● 完成南宁万科城项目户外广告、展板等日常设计。
+                            </p>
+                        </div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2016.3 – 2017.3</div>
-                        <h3 class="timeline-role">平面设计师</h3>
-                        <div class="timeline-company">深圳时尚商业地产集团</div>
-                        <p class="timeline-desc">
-                            ● 负责深圳7号线华新站地铁商城宣传设计，跟进活动宣传及物料制作。
-                        </p>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2015.7 – 2016.3</div>
-                        <h3 class="timeline-role">平面设计师</h3>
-                        <div class="timeline-company">深圳市犀牛传播有限公司</div>
-                        <p class="timeline-desc">
-                            ● 完成南宁万科城项目户外广告、展板等日常设计。
-                        </p>
-                    </div>
+                    
+                    <button id="toggle-experience" data-expanded="false">
+                        <span id="button-text">查看 2018 年以前早期履历 (3段) ↓</span>
+                    </button>
+                    
                 </div>
             </div>
         </div>
@@ -640,24 +583,39 @@
 
         // 返回顶部按钮的显示/隐藏和点击事件 JS 逻辑
         const backToTopButton = document.getElementById('back-to-top');
-
-        // 当滚动超过 300px 时显示按钮
         window.onscroll = function() {
-            // 同时检查 documentElement (Chrome) 和 body (Firefox/IE)
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                // 关键修正：将 display 设置为 flex，使其显示且居中
                 backToTopButton.style.display = "flex"; 
             } else {
                 backToTopButton.style.display = "none";
             }
         };
-
-        // 点击按钮时，平滑滚动到页面顶部
         backToTopButton.addEventListener('click', function() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+
+        // **新增：早期履历显示/隐藏逻辑**
+        const toggleButton = document.getElementById('toggle-experience');
+        const oldExperienceDiv = document.getElementById('old-experience');
+        const buttonTextSpan = document.getElementById('button-text');
+
+        toggleButton.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('data-expanded') === 'true';
+
+            if (isExpanded) {
+                // 切换为收起
+                oldExperienceDiv.style.display = 'none';
+                buttonTextSpan.textContent = '查看 2018 年以前早期履历 (3段) ↓';
+                this.setAttribute('data-expanded', 'false');
+            } else {
+                // 切换为展开
+                oldExperienceDiv.style.display = 'block';
+                buttonTextSpan.textContent = '收起早期履历 ↑';
+                this.setAttribute('data-expanded', 'true');
+            }
         });
     </script>
 </body>
