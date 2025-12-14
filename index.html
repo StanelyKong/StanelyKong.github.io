@@ -31,7 +31,7 @@
         ul { list-style: none; }
         img { width: 100%; height: auto; display: block; object-fit: cover; }
 
-        /* --- 2. 通用组件 --- */
+        /* --- 2. 通用组件 (略) --- */
         .container {
             width: 90%;
             max-width: var(--max-width);
@@ -44,9 +44,9 @@
             .container { width: 95%; } 
         }
         
-        .section-header { margin-bottom: 60px; } /* 保持主标题和内容块的距离 */
+        .section-header { margin-bottom: 60px; }
         
-        /* 主标题样式 (保持极简大气) */
+        /* 主标题样式 (保持第五版，极简大气) */
         .section-header h2 {
             font-size: 3.2rem; 
             font-weight: 900; 
@@ -135,12 +135,8 @@
             .btn { padding: 10px 25px; }
         }
 
-        /* --- 5. 作品集 (核心精细化区域) --- */
-        .portfolio-category { 
-            margin-bottom: 80px; /* 保持大间隔，区分不同分类 */
-        }
-
-        /* 内容分类标题 - 极简国际化 */
+        /* --- 5. 作品集 (略) --- */
+        .portfolio-category { margin-bottom: 80px; }
         .category-title-en {
             font-size: 0.9rem;
             color: #999;
@@ -153,14 +149,12 @@
         .category-title-cn {
             font-size: 1.8rem;
             font-weight: 800;
-            margin-bottom: 20px; /* 略微收紧中文标题与下方网格的距离 (从30px到20px) */
+            margin-bottom: 20px; 
             padding-bottom: 10px;
             border-bottom: 1px solid var(--border); 
         }
-
         .grid-3 {
             display: grid;
-            /* 保证在宽屏下也有充足的卡片宽度 */
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
             gap: 30px;
         }
@@ -185,12 +179,12 @@
         .card-info h3 { 
             font-size: 1.15rem; 
             font-weight: 700; 
-            margin-bottom: 5px; /* 收紧标题和描述的距离 (从8px到5px) */
+            margin-bottom: 5px; 
             line-height: 1.3; 
         } 
         .card-info p {
-            font-size: 0.95rem; /* 描述字体略微增大，提升易读性 */
-            line-height: 1.5; /* 优化行高 */
+            font-size: 0.95rem; 
+            line-height: 1.5; 
         }
         .tech-stack { 
             font-size: 0.8rem; 
@@ -212,7 +206,7 @@
         }
 
 
-        /* --- 6. 简历与经历 (略) --- */
+        /* --- 6. 简历与经历 (工作履历主体排版，恢复第四版设计) --- */
         #about { background: var(--bg-light); } 
         
         .resume-layout {
@@ -234,13 +228,14 @@
             margin-bottom: 20px;
         }
         
+        /* 核心优势/教育背景列表样式 (第四版设计) */
         .core-list li {
             margin-bottom: 10px;
             text-align: left;
             padding-left: 20px;
             position: relative;
             max-width: 400px;
-            margin-left: auto;
+            margin-left: auto; /* 居中对齐，符合第四版结构 */
             margin-right: auto;
         }
         .core-list li::before {
@@ -258,11 +253,11 @@
             box-shadow: none;
         }
 
-        /* 履历时间轴样式 */
+        /* 履历时间轴样式 (第四版设计) */
         .timeline-item {
             margin-bottom: 50px; 
             padding-left: 25px; 
-            border-left: 1px solid #dddddd; 
+            border-left: 1px solid #dddddd; /* 极细分隔线 */
             position: relative;
             padding-top: 5px;
             padding-bottom: 5px; 
@@ -270,7 +265,7 @@
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -6px; 
+            left: -6px; /* 缩小圆点 */
             top: 10px; 
             width: 12px;
             height: 12px;
@@ -279,25 +274,29 @@
             border: 3px solid var(--bg-light); 
             box-sizing: border-box;
         }
+        
+        /* 履历日期样式 (第四版设计) */
         .timeline-date {
             font-size: 0.9rem;
             color: var(--text-sub);
-            margin-bottom: 15px; 
+            margin-bottom: 15px; /* 增加日期与职位间距 */
             font-weight: 500;
             letter-spacing: 1px;
             display: block;
         }
         
+        /* 履历职位样式 (第四版设计) */
         .timeline-role {
-            font-size: 1.4rem; 
+            font-size: 1.4rem; /* 职位名称最大化 */
             font-weight: 900; 
             line-height: 1.2;
             margin-bottom: 5px;
         }
+        /* 履历公司样式 (第四版设计) */
         .timeline-company {
             font-size: 1rem;
-            color: #999; 
-            font-weight: 400; 
+            color: #999; /* 柔和的公司名颜色 */
+            font-weight: 400; /* 细体，与职位形成强烈对比 */
             margin-bottom: 15px;
             display: block;
         }
@@ -504,7 +503,7 @@
                         <li><strong>品牌全案：</strong>主导50+项目(主视觉/VI/落地)。</li>
                         <li><strong>AI提效：</strong>熟练Midjourney/Stable Diffusion，优化设计流程。</li>
                         <li><strong>多语言：</strong>国语、粤语、英语(CET-4)。</li>
-                        <li><strong>管理经验：</strong>指导初级设计师，协助跨部门提案竞标。</li>
+                        <li><strong>管理经验：：</strong>指导初级设计师，协助跨部门提案竞标。</li>
                     </ul>
                     <br>
                     <h4>教育背景</h4>
@@ -595,7 +594,7 @@
     <button id="back-to-top" title="返回顶部" style="display: none;">↑</button>
 
     <script>
-        // 平滑滚动逻辑 (导航栏点击)
+        // JS 逻辑 (略)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -605,7 +604,6 @@
             });
         });
 
-        // 返回顶部按钮的显示/隐藏和点击事件 JS 逻辑
         const backToTopButton = document.getElementById('back-to-top');
         window.onscroll = function() {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
