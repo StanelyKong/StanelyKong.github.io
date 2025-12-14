@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>项目详情 | 平安产险2023全球校招主视觉</title>
+    <title>作品案例：TCL集团春季招聘主视觉</title>
     <style>
-        /* 继承主页核心样式 */
+        /* --- 1. 全局变量与重置 (与 index.html 保持一致) --- */
         :root {
             --bg-body: #ffffff;
             --bg-light: #f8f9fa;
             --text-main: #111111;
             --text-sub: #666666;
-            --accent: #0066ff;
+            --accent: #0066ff; 
             --border: #eeeeee;
             --max-width: 1200px;
         }
@@ -28,241 +28,291 @@
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
-        img { width: 100%; height: auto; display: block; object-fit: cover; border-radius: 6px; }
+        ul { list-style: none; }
+        img { width: 100%; height: auto; display: block; object-fit: cover; }
 
+        /* --- 2. 通用组件 --- */
         .container {
             width: 90%;
             max-width: var(--max-width);
             margin: 0 auto;
         }
+
+        .section-padding { padding: 80px 0; } /* 详情页适当减小垂直内边距 */
+        @media (max-width: 768px) {
+            .section-padding { padding: 40px 0; }
+            .container { width: 95%; } 
+        }
         
-        /* 手机端适配 */
-        @media (max-width: 768px) {
-            .container { width: 95%; }
-        }
-
-        /* --- 导航/返回区域 --- */
-        #project-header {
-            padding: 80px 0 40px;
-            background: var(--bg-light);
+        /* --- 3. 导航栏 (与 index.html 保持一致) --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
             border-bottom: 1px solid var(--border);
+            height: 70px;
+            display: flex;
+            align-items: center;
         }
-        @media (max-width: 768px) {
-            #project-header { padding: 60px 0 30px; }
+        nav { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo { font-size: 1.2rem; font-weight: 900; letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-sub); }
+        .nav-links a:hover { color: var(--accent); }
+
+
+        /* --- 4. 详情页特有样式 --- */
+        #project-hero {
+            padding-top: 150px; /* 留出导航栏空间 */
+            padding-bottom: 80px;
+            text-align: center;
+        }
+        
+        /* 优化 1：主标题风格同步 (极简大气) */
+        .project-header h1 {
+            font-size: 3.2rem; 
+            font-weight: 900; 
+            line-height: 1.1; 
+            letter-spacing: -1px; 
+            margin-bottom: 5px;
+            color: var(--text-main);
+        }
+        .project-header p {
+            font-size: 1.1rem;
+            font-weight: 300; 
+            color: #999999;
+            margin-top: 10px;
         }
 
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            font-size: 0.9rem;
-            color: var(--text-sub);
+        @media (max-width: 768px) {
+            #project-hero { padding-top: 100px; }
+            .project-header h1 { font-size: 2.2rem; }
+            .project-header p { font-size: 1rem; }
+        }
+
+        /* 标签样式 (与 index.html 保持一致) */
+        .project-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0 50px 0;
+        }
+        .tag {
+            background: var(--text-main);
+            color: #fff;
+            padding: 5px 12px;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        .tag.ai { background: var(--accent); } 
+        
+        /* 详情内容区域 */
+        #project-content {
+            background: #fff;
+        }
+        .content-layout {
+            display: grid;
+            grid-template-columns: 1fr 3fr; /* 信息栏窄，内容宽 */
+            gap: 50px;
+        }
+        @media (max-width: 768px) {
+            .content-layout {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        
+        /* 左侧信息栏 */
+        .info-side {
+            padding-right: 20px;
+            border-right: 1px solid var(--border);
+            text-align: left;
+        }
+        @media (max-width: 768px) {
+            .info-side {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding-bottom: 20px;
+                padding-right: 0;
+            }
+        }
+
+        .info-item {
             margin-bottom: 30px;
         }
-        .back-link:hover { color: var(--accent); }
-        .back-link span { font-size: 1.5rem; margin-right: 5px; line-height: 0; }
-
-        .project-title h1 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            margin-bottom: 15px;
-            line-height: 1.1;
+        .info-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 5px;
         }
-        @media (max-width: 768px) {
-            .project-title h1 { font-size: 1.8rem; }
-        }
-
-        .project-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px 40px;
+        .info-item p {
             font-size: 0.95rem;
-            color: var(--text-sub);
-        }
-        .project-meta strong {
             color: var(--text-main);
-            margin-right: 5px;
-            font-weight: 600;
         }
 
-        /* --- 项目内容区 --- */
-        #project-content {
-            padding: 60px 0 100px;
+        /* 右侧内容详情 */
+        .detail-side {
+            padding: 0;
         }
-        .content-section {
-            margin-bottom: 50px;
-        }
-        .content-section h2 {
+        .detail-side h3 {
             font-size: 1.8rem;
             font-weight: 800;
-            margin-bottom: 25px;
-            border-left: 4px solid var(--accent);
-            padding-left: 15px;
-        }
-        @media (max-width: 768px) {
-            .content-section h2 { font-size: 1.5rem; margin-bottom: 20px; }
-        }
-
-        .content-section p {
+            margin-top: 50px;
             margin-bottom: 20px;
-            font-size: 1.1rem;
-            max-width: 800px;
+            border-bottom: 1px solid var(--border); /* 细线分隔，保持极简 */
+            padding-bottom: 10px;
         }
-        @media (max-width: 768px) {
-            .content-section p { font-size: 1rem; }
+        .detail-side h3:first-child {
+            margin-top: 0;
         }
 
-        /* 图片/视频展示 */
-        .content-image, .content-video {
-            margin: 40px 0;
-            overflow: hidden;
-            background: #f1f1f1;
+        .detail-side p {
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        .detail-side img {
+            margin: 40px 0; /* 增加图片垂直留白 */
             border-radius: 6px;
-        }
-        /* 针对长图、多图的容器 */
-        .content-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        @media (max-width: 768px) {
-             .content-gallery {
-                grid-template-columns: 1fr;
-            }
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 1px solid #f0f0f0;
         }
         
-        .content-gallery img {
-             border-radius: 0; /* 图集中图片无需圆角 */
+        /* 项目列表 */
+        .project-list li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 15px;
         }
-        
-        /* --- 返回顶部按钮样式 --- */
-        #back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 999;
-            width: 50px;
-            height: 50px;
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            justify-content: center;
-            align-items: center; 
-            font-size: 24px;
-            opacity: 0.8;
-            transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
+        .project-list li::before {
+            content: '-';
+            color: var(--text-sub);
+            position: absolute;
+            left: 0;
+            font-weight: 700;
         }
 
-        #back-to-top:hover {
-            opacity: 1;
-            transform: translateY(-2px);
-            background-color: #0056e6;
+        /* 返回首页按钮 */
+        .back-to-home {
+            margin-top: 80px;
+            text-align: center;
         }
-        
-        /* 移动端优化：按钮缩小 */
-        @media (max-width: 768px) {
-            #back-to-top {
-                 bottom: 20px;
-                 right: 20px;
-                 width: 40px;
-                 height: 40px;
-                 font-size: 20px;
-            }
+        .back-to-home a {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 600;
+            padding: 10px 20px;
+            border: 2px solid var(--accent);
+            border-radius: 4px;
+            display: inline-block;
         }
-        
+        .back-to-home a:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
     </style>
 </head>
 <body>
 
-    <section id="project-header">
+    <header>
         <div class="container">
-            <a href="../index.html" class="back-link">
-                <span>←</span> 返回作品集
-            </a>
+            <nav>
+                <a href="index.html" class="logo">STANLEY.KONG</a>
+                <div class="nav-links">
+                    <a href="index.html#work">作品案例</a>
+                    <a href="index.html#about">核心优势/履历</a> 
+                    <a href="index.html#contact">联系我</a>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-            <div class="project-title">
-                <h1>平安产险2023全球校招主视觉</h1>
-                <p style="color:var(--accent); font-weight:600; margin-bottom:20px;">科技赋能·未来人才驱动</p>
+    <section id="project-hero">
+        <div class="container">
+            <div class="project-header">
+                <h1>TCL集团春季招聘主视觉</h1>
+                <p>Key Visuals | 以AI辅助设计驱动效率提升</p>
+            </div>
+            
+            <div class="project-tags">
+                <span class="tag">KV设计</span>
+                <span class="tag ai">AI辅助</span>
+                <span class="tag">高效提案</span>
+                <span class="tag">科技感</span>
             </div>
 
-            <div class="project-meta">
-                <div><strong>客户:</strong> 平安产险</div>
-                <div><strong>我的角色:</strong> 高级设计师(P5)</div>
-                <div><strong>项目周期:</strong> 2023年秋季</div>
-                <div><strong>技术栈:</strong> MidJourney/Stable Diffusion/PS</div>
-            </div>
+            <img src="https://picsum.photos/id/10/1200/650" alt="TCL招聘主视觉封面" style="width: 100%; max-width: 900px; margin: 0 auto; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
         </div>
     </section>
 
-    <section id="project-content">
+    <section id="project-content" class="section-padding">
         <div class="container">
-            
-            <div class="content-section">
-                <h2>项目背景与挑战</h2>
-                <p>作为金融科技领域的领导者，平安产险需要一套能够体现其**“科技感、未来感和全球化”**的高级主视觉，以吸引顶尖的应届毕业生。挑战在于：如何在严格的金融品牌规范下，实现富有冲击力和创新感的视觉表达。</p>
-            </div>
+            <div class="content-layout">
+                
+                <div class="info-side">
+                    <div class="info-item">
+                        <h4>项目角色</h4>
+                        <p>高级设计师 / 项目主导</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>服务客户</h4>
+                        <p>TCL集团</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>项目周期</h4>
+                        <p>2023年4月，1周</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>设计工具</h4>
+                        <p>Photoshop, Midjourney, Stable Diffusion</p>
+                    </div>
+                </div>
 
-            <div class="content-section">
-                <h2>设计概念：“未来脉络”</h2>
-                <p>我们选择**“未来脉络”**作为核心概念，利用抽象的几何结构、流动的光束和深邃的蓝色调，来象征平安集团的科技网络和无限延展的未来。设计思路如下：</p>
-                <ul>
-                    <li style="margin-bottom:10px;">• **色彩体系：** 以平安品牌蓝为主色，搭配荧光蓝和白色作为高光，营造赛博朋克风格的科技感。</li>
-                    <li style="margin-bottom:10px;">• **视觉元素：** 采用复杂的几何晶体和数据流线，代表数据、智能与科技的融合。</li>
-                </ul>
-            </div>
-            
-            <div class="content-image">
-                <img src="https://picsum.photos/id/14/1200/800" alt="平安产险2023全球校招主视觉">
-            </div>
-            
-            <div class="content-section">
-                <h2>AI工具赋能与成果</h2>
-                <p>在设计流程中，AI工具发挥了关键作用：</p>
-                <ul>
-                    <li style="margin-bottom:10px;">• **创意生成：** 利用MidJourney快速生成数十个不同视角和光影的“未来城市/网络”概念图，精准锁定最符合需求的视觉风格。</li>
-                    <li style="margin-bottom:10px;">• **细节优化：** 使用Stable Diffusion和PS对AI输出的原型进行精修，确保线条锐利、光影真实，符合商业印刷和线上展示的高精度要求。</li>
-                </ul>
-                <p>最终，该主视觉方案覆盖了**10万+**潜在候选人，有效提升了品牌在年轻群体中的科技形象。</p>
-            </div>
+                <div class="detail-side">
+                    <h3>项目概述与挑战</h3>
+                    <p>
+                        TCL集团春季招聘项目要求主视觉具备**科技感、国际化**的调性，同时必须在极短的提案时间内，提供多套高完成度的方案。这是对设计师效率和创意能力的双重挑战。
+                    </p>
+                    <p>
+                        本次项目我全面引入 AI 辅助设计流程，大幅提升了创意原型的产出速度，最终确保在规定时间内成功交付了高质量方案。
+                    </p>
 
-            <div class="content-section">
-                <h2>物料延展与应用</h2>
-                <p>主视觉被成功应用在海报、易拉宝、招聘官网Banner及H5等全套物料上，实现视觉风格统一。</p>
+                    <h3>设计流程与AI应用</h3>
+                    <ul class="project-list">
+                        <li>**创意原型 (Midjourney):** 利用 Midjourney 快速生成多个基于科技、未来、人才的抽象视觉概念。</li>
+                        <li>**细节完善 (Stable Diffusion):** 选定方向后，使用 Stable Diffusion 对关键元素进行细节强化和材质优化。</li>
+                        <li>**合成与定稿 (PS/AI):** 在 Photoshop 中完成人像合成、文字排版、色彩校正，确保视觉效果符合品牌规范。</li>
+                    </ul>
 
-                <div class="content-gallery">
-                    <img src="https://picsum.photos/id/401/600/400" alt="招聘海报应用">
-                    <img src="https://picsum.photos/id/402/600/400" alt="官方网站Banner">
-                    <img src="https://picsum.photos/id/403/600/400" alt="H5启动页">
+                    <img src="https://picsum.photos/id/11/1200/800" alt="视觉方案草稿">
+                    
+                    <h3>核心成果</h3>
+                    <ul class="project-list">
+                        <li>**效率提升:** 通过 AI 辅助，创意原型产出效率提升**30%**。</li>
+                        <li>**全案输出:** 成功交付包括线上宣传、海报、H5 启动页在内的全套物料。</li>
+                        <li>**客户反馈:** 客户对方案的未来感和科技感高度认可，并表示这是最快收到高完成度方案的一次合作。</li>
+                    </ul>
+
+                    <img src="https://picsum.photos/id/13/1200/800" alt="落地应用图">
                 </div>
             </div>
+            
+            <div class="back-to-home">
+                 <a href="index.html#work">← 返回作品案例列表</a>
+            </div>
+
         </div>
     </section>
-    
-    <button id="back-to-top" title="返回顶部" style="display: none;">↑</button>
 
-    <script>
-        // 返回顶部按钮的显示/隐藏和点击事件 JS 逻辑
-        const backToTopButton = document.getElementById('back-to-top');
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid #eee; font-size: 0.85rem; color: #999;">
+        <p>© 2025 江振世 Stanley Kong. All rights reserved.</p>
+    </footer>
 
-        // 当滚动超过 300px 时显示按钮
-        window.onscroll = function() {
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                backToTopButton.style.display = "flex"; 
-            } else {
-                backToTopButton.style.display = "none";
-            }
-        };
-
-        // 点击按钮时，平滑滚动到页面顶部
-        backToTopButton.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
 </body>
 </html>
