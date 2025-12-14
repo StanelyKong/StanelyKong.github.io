@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目详情 | 江振世 Stanley Kong</title>
+    <style>
+        /* --- 1. 详情页专属样式 (复用首页风格) --- */
+        :root {
+            --bg-body: #ffffff;
+            --text-main: #111111;
+            --text-sub: #666666;
+            --accent: #0066ff;
+            --border: #eeeeee;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.8;
+        }
+        img { width: 100%; height: auto; display: block; border-radius: 8px; }
+        .container { width: 90%; max-width: 900px; margin: 0 auto; } /* 详情页窄一点，利于阅读 */
+
+        /* 顶部导航 */
+        header { padding: 20px 0; border-bottom: 1px solid var(--border); margin-bottom: 60px; }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        .back-btn { 
+            text-decoration: none; font-weight: 600; color: var(--text-main); 
+            display: flex; align-items: center; gap: 5px; transition: 0.3s;
+        }
+        .back-btn:hover { color: var(--accent); }
+
+        /* 项目头部信息 */
+        .project-header { margin-bottom: 60px; }
+        .project-title { font-size: 2.5rem; font-weight: 900; margin-bottom: 30px; line-height: 1.2; }
+        
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .meta-item h4 { font-size: 0.8rem; color: #999; text-transform: uppercase; margin-bottom: 5px; }
+        .meta-item p { font-size: 1rem; font-weight: 600; }
+
+        /* 内容区域 */
+        .content-block { margin-bottom: 60px; }
+        .content-block h2 { font-size: 1.5rem; margin-bottom: 20px; border-left: 4px solid var(--accent); padding-left: 15px; }
+        .content-block p { color: #444; margin-bottom: 20px; font-size: 1.05rem; }
+
+        /* 图片展示 */
+        .image-group { display: flex; flex-direction: column; gap: 40px; margin-top: 40px; }
+        .caption { text-align: center; font-size: 0.9rem; color: #888; margin-top: 10px; }
+
+        /* 底部 */
+        footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border); margin-top: 80px; }
+        .next-project { font-weight: 700; color: var(--text-main); font-size: 1.2rem; text-decoration: none; }
+        .next-project:hover { color: var(--accent); }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-inner">
+            <a href="../index.html" class="back-btn">← 返回首页</a>
+            <span style="font-weight: 900;">STANLEY.KONG</span>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <div class="project-header">
+            <h1 class="project-title">维动集团品牌形象焕新升级</h1>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <h4>Client / 客户</h4>
+                    <p>维动集团</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Services / 服务</h4>
+                    <p>品牌策略, VI系统, Logo设计</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Year / 年份</h4>
+                    <p>2021</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <img src="https://picsum.photos/id/20/1200/600" alt="项目主图" style="margin-bottom: 40px;">
+            
+            <h2>项目背景</h2>
+            <p>这里写项目的背景故事。例如：维动集团原有形象较为传统，随着业务扩展，急需一套符合互联网科技属性的全新视觉识别系统。</p>
+            
+            <h2>设计策略</h2>
+            <p>我们提取了“连接”、“速度”作为核心概念，重塑了 Logo 的几何结构...</p>
+        </div>
+
+        <div class="content-block">
+            <h2>视觉呈现</h2>
+            <div class="image-group">
+                
+                <div>
+                    <img src="https://picsum.photos/id/24/1000/700" alt="Logo规范">
+                    <p class="caption">Logo 标准制图规范</p>
+                </div>
+
+                <div>
+                    <img src="https://picsum.photos/id/26/1000/700" alt="办公应用">
+                    <p class="caption">办公事务用品应用展示</p>
+                </div>
+
+                <div>
+                    <img src="https://picsum.photos/id/28/1000/700" alt="户外广告">
+                    <p class="caption">户外广告牌效果模拟</p>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p style="color: #999; margin-bottom: 10px;">Next Project</p>
+        <a href="huikang.html" class="next-project">HC原康医药品牌全案 →</a>
+    </footer>
+
+</body>
+</html>
