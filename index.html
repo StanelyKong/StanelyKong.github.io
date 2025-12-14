@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>设计师｜江振世 Stanley Kong</title>
     <style>
-        /* --- 1. 全局变量与重置 --- */
+        /* --- 1. 全局变量与重置 (略) --- */
         :root {
             --bg-body: #ffffff;
             --bg-light: #f8f9fa;
             --text-main: #111111;
             --text-sub: #666666;
-            --accent: #0066ff; /* 国际蓝，更具科技感 */
+            --accent: #0066ff; 
             --border: #eeeeee;
             --max-width: 1200px;
         }
@@ -45,27 +45,30 @@
         }
         
         .section-header { margin-bottom: 60px; }
+        
+        /* 优化 1：极简大标题 - 字体最大化，去除所有装饰 */
         .section-header h2 {
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: 10px;
+            font-size: 3.2rem; /* 更大 */
+            font-weight: 900; 
+            line-height: 1.1; 
+            letter-spacing: -1px; /* 紧凑感 */
+            margin-bottom: 5px;
             position: relative;
-            display: inline-block;
         }
         .section-header h2::after {
-            content: '';
-            display: block;
-            width: 40px;
-            height: 4px;
-            background: var(--accent);
-            margin-top: 10px;
+            content: none; 
         }
-        .section-header p { color: var(--text-sub); margin-top: 10px; }
+        .section-header p { 
+            color: var(--text-sub); 
+            margin-top: 5px; 
+            font-size: 1.1rem;
+            font-weight: 300; /* 副标题使用浅色细体，形成对比 */
+            color: #999999;
+        }
         @media (max-width: 768px) {
-            .section-header h2 { font-size: 1.6rem; }
+            .section-header h2 { font-size: 2.2rem; }
+            .section-header p { font-size: 1rem; }
         }
-
 
         /* --- 3. 导航栏 (略) --- */
         header {
@@ -135,6 +138,25 @@
 
         /* --- 5. 作品集 (略) --- */
         .portfolio-category { margin-bottom: 80px; }
+
+        /* 优化 2：内容分类标题 - 极简国际化 */
+        .category-title-en {
+            font-size: 0.9rem;
+            color: #999;
+            text-transform: uppercase; 
+            letter-spacing: 2px; /* 增加间距 */
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .category-title-cn {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border); /* 细线作为唯一分隔 */
+        }
+
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -154,6 +176,7 @@
         .card-img { height: 260px; overflow: hidden; position: relative; }
         @media (max-width: 768px) { .card-img { height: 200px; } }
         .card-info { padding: 20px; min-height: 150px; }
+        .card-info h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; line-height: 1.3; } 
         .tech-stack { font-size: 0.8rem; color: var(--accent); font-weight: 500; margin-top: 10px; }
         .card-badge {
             position: absolute;
@@ -169,12 +192,11 @@
         }
 
 
-        /* --- 6. 简历与经历 (核心优化区域) --- */
+        /* --- 6. 简历与经历 (略) --- */
         #about { background: var(--bg-light); } 
         
         .resume-layout {
             display: grid;
-            /* 调整左右栏比例 (1:2) */
             grid-template-columns: 1fr 2fr; 
             gap: 60px;
         }
@@ -210,7 +232,6 @@
             line-height: 1.6;
         }
 
-        /* 移除时间轴背景色和阴影，还原为简洁背景 */
         .timeline-side {
             padding: 0; 
             border-radius: 0;
@@ -219,9 +240,9 @@
 
         /* 履历时间轴样式 */
         .timeline-item {
-            margin-bottom: 40px;
+            margin-bottom: 50px; /* 增加间隔，更舒展 */
             padding-left: 25px; 
-            border-left: 2px solid var(--border); 
+            border-left: 1px solid #dddddd; /* 极细分隔线 */
             position: relative;
             padding-top: 5px;
             padding-bottom: 5px; 
@@ -229,48 +250,55 @@
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -8px; 
+            left: -6px; /* 缩小圆点 */
             top: 10px; 
-            width: 16px;
-            height: 16px;
+            width: 12px;
+            height: 12px;
             background: var(--accent);
             border-radius: 50%;
-            border: 4px solid var(--bg-light); 
+            border: 3px solid var(--bg-light); 
             box-sizing: border-box;
         }
         .timeline-date {
             font-size: 0.9rem;
             color: var(--text-sub);
-            margin-bottom: 5px;
+            margin-bottom: 15px; /* 增加日期与职位间距 */
             font-weight: 500;
+            letter-spacing: 1px;
+            display: block;
         }
+        
+        /* 优化 3：履历职位和公司名称层级分离 */
         .timeline-role {
-            font-size: 1.2rem; 
-            font-weight: 800;
+            font-size: 1.4rem; /* 职位名称最大化 */
+            font-weight: 900; 
+            line-height: 1.2;
             margin-bottom: 5px;
         }
         .timeline-company {
             font-size: 1rem;
-            color: var(--accent);
+            color: #999; /* 柔和的公司名颜色 */
+            font-weight: 400; /* 细体，与职位形成强烈对比 */
             margin-bottom: 15px;
+            display: block;
         }
         .timeline-desc {
             font-size: 0.95rem;
             color: var(--text-main);
         }
-        
-        /* **新增：精简版早期履历样式** */
+
+        /* **精简整合的早期履历样式** (保持简洁大气) */
         .timeline-summary {
-            margin-top: 60px; /* 确保与上方项目有足够间距 */
+            margin-top: 60px; 
             padding: 15px 20px;
-            border-left: 4px solid #cccccc; /* 灰色线条区分 */
+            border-left: 4px solid #cccccc; 
             position: relative;
-            background: #ffffff; /* 浅色背景突出 */
+            background: #ffffff; 
             border-radius: 4px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         .timeline-summary::before {
-            content: '···'; /* 使用点点点替代圆点，表示概括 */
+            content: '···'; 
             position: absolute;
             left: -20px; 
             top: 10px;
@@ -291,7 +319,7 @@
         /* --- 7. 联系页 (略) --- */
         #contact { text-align: center; }
         .email-box {
-            font-size: 2rem;
+            font-size: 2.2rem; /* 略微增大 */
             font-weight: 800;
             margin: 30px 0;
             color: var(--text-main);
@@ -299,7 +327,7 @@
         }
         .email-box:hover { color: var(--accent); }
         @media (max-width: 768px) {
-            .email-box { font-size: 1.5rem; }
+            .email-box { font-size: 1.8rem; }
         }
 
 
@@ -377,12 +405,13 @@
     <section id="work" class="section-padding">
         <div class="container">
             <div class="section-header">
-                <h2>精选案例·Selected Work</h2>
-                <p>涵盖KV主视觉、品牌全案VI及数字化互动体验</p>
+                <h2>精选案例</h2>
+                <p>Selected Work | 涵盖KV主视觉、品牌全案VI及数字化互动体验</p>
             </div>
 
             <div class="portfolio-category">
-                <h3 class="category-title">商业主视觉(Key Visuals)</h3>
+                <span class="category-title-en">Key Visuals</span>
+                <h3 class="category-title-cn">商业主视觉</h3>
                 <div class="grid-3">
                     <a href="projects/tcl-kv.html" class="work-card">
                         <div class="card-img"><span class="card-badge">AI辅助</span><img src="https://picsum.photos/id/10/800/600" alt="TCL招聘主视觉"></div>
@@ -400,7 +429,8 @@
             </div>
 
             <div class="portfolio-category">
-                <h3 class="category-title">品牌识别(Brand Identity)</h3>
+                <span class="category-title-en">Brand Identity</span>
+                <h3 class="category-title-cn">品牌识别与升级</h3>
                 <div class="grid-3">
                     <a href="projects/weidong.html" class="work-card">
                         <div class="card-img"><img src="https://picsum.photos/id/20/800/600" alt="维动集团 VI"></div>
@@ -418,7 +448,8 @@
             </div>
 
             <div class="portfolio-category">
-                <h3 class="category-title">数字化体验(Digital & H5)</h3>
+                <span class="category-title-en">Digital & H5</span>
+                <h3 class="category-title-cn">数字化体验</h3>
                 <div class="grid-3">
                     <a href="projects/vanke-long-img.html" class="work-card">
                         <div class="card-img"><span class="card-badge">10万+阅读量</span><img src="https://picsum.photos/id/29/800/600" alt="万科长图文"></div>
@@ -443,7 +474,8 @@
             <div class="resume-layout">
                 <div class="profile-side">
                     <div class="section-header">
-                        <h2>工作履历<br>Experience</h2>
+                        <h2>工作履历</h2>
+                        <p>Experience</p>
                     </div>
                     <img src="https://picsum.photos/id/64/200/200" alt="江振世">
                     
@@ -477,9 +509,9 @@
                 <div class="timeline-side">
                     
                     <div class="timeline-item">
-                        <div class="timeline-date">2023.03 – 2024.10</div>
+                        <span class="timeline-date">2023.03 – 2024.10</span>
                         <h3 class="timeline-role">高级设计师(P5)</h3>
-                        <div class="timeline-company">同道精英(天津)信息技术有限公司|广州分公司</div>
+                        <span class="timeline-company">同道精英(天津)信息技术有限公司|广州分公司</span>
                         <p class="timeline-desc">
                             ● 使用Midjourney生成主视觉创意原型，提案效率提升30%；<br>
                             ● 为平安产险2023全球校招设计主视觉，覆盖候选人10万+；<br>
@@ -487,18 +519,18 @@
                         </p>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-date">2021.5 – 2021.8</div>
+                        <span class="timeline-date">2021.5 – 2021.8</span>
                         <h3 class="timeline-role">美术指导</h3>
-                        <div class="timeline-company">广州维动广告传媒有限公司</div>
+                        <span class="timeline-company">广州维动广告传媒有限公司</span>
                         <p class="timeline-desc">
                             ● 品牌升级：完成维动集团、睇房通LOGO焕新，提升品牌识别度；<br>
                             ● 流程优化：规范VI手册制定流程，缩短交付周期。
                         </p>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-date">2018.3 – 2020.8</div>
+                        <span class="timeline-date">2018.3 – 2020.8</span>
                         <h3 class="timeline-role">美术指导</h3>
-                        <div class="timeline-company">北京网聘咨询有限公司(智联招聘)|深圳分公司</div>
+                        <span class="timeline-company">北京网聘咨询有限公司(智联招聘)|深圳分公司</span>
                         <p class="timeline-desc">
                             ● 主导万科集团、佳兆业等企业招聘视觉设计；<br>
                             ● 设计方案助力销售团队成功竞标，单一长图文阅读量最高可达10万+；<br>
@@ -507,9 +539,9 @@
                     </div>
 
                     <div class="timeline-item">
-                        <div class="timeline-date">2015.7 – 2018.3</div>
+                        <span class="timeline-date">2015.7 – 2018.3</span>
                         <h3 class="timeline-role">早期设计经验整合</h3>
-                        <div class="timeline-company">犀牛传播、时尚商业地产、作为创意设计</div>
+                        <span class="timeline-company">犀牛传播、时尚商业地产、作为创意设计</span>
                         <p class="timeline-desc">
                             ● **核心能力：** 品牌VI系统设计、平面宣传、物料制作和跟进。<br>
                             ● **主要项目：** 中海地产提案、深记糕点/十八金燕品牌VI、万科城户外广告。
@@ -524,8 +556,8 @@
     <section id="contact" class="section-padding">
         <div class="container">
             <div class="section-header" style="text-align: center;">
-                <h2>合作联系·Contact</h2>
-                <p>开放全职机会/品牌项目合作</p>
+                <h2>合作联系</h2>
+                <p>Contact | 开放全职机会/品牌项目合作</p>
             </div>
             
             <a href="mailto:stanley.kong@foxmail.com" class="email-box">stanley.kong@foxmail.com</a>
