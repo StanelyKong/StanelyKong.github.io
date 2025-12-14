@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>设计师作品集 | 江振世</title>
+    <title>江振世 | 高级设计师作品集</title>
     <style>
-        /* --- CSS 全局变量 & 基础设置 (可在此修改颜色和字体) --- */
+        /* --- CSS 全局变量 & 基础设置 --- */
         :root {
-            --bg-color: #ffffff; /* 背景色 */
-            --text-color: #222222; /* 主要文字颜色 */
-            --accent-color: #0056b3; /* 强调色 (链接等) */
-            --secondary-text: #666666; /* 次要文字颜色 */
-            --section-spacing: 80px; /* 区块间距 */
-            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a; /* 文本更深，对比度更高 */
+            --accent-color: #0070f3; /* 强调色：采用更具现代感的深蓝色 */
+            --secondary-text: #555555;
+            --section-spacing: 120px; /* 间距加大，提升呼吸感 */
+            --font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* 字体堆栈更简洁专业 */
         }
 
         /* 基础重置 */
@@ -26,7 +26,7 @@
             font-family: var(--font-stack);
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.65;
             overflow-x: hidden;
         }
 
@@ -48,8 +48,16 @@
 
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 1300px; /* 容器更宽，更适合平面设计作品展示 */
             margin: 0 auto;
+        }
+        
+        /* 标题优化 - 更有视觉冲击力 */
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-color);
         }
 
         /* --- 导航栏 (Header / Nav) --- */
@@ -57,49 +65,34 @@
             padding: 20px 0;
             position: sticky;
             top: 0;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 100;
-            border-bottom: 1px solid #eee;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            border-bottom: 1px solid #f0f0f0; /* 边线更浅 */
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+            font-size: 1.6rem;
+            font-weight: 900; /* Logo 更粗黑 */
         }
-
-        .nav-links a {
-            margin-left: 30px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
+        
         /* --- 英雄区域 (Hero Section) --- */
         #hero {
-            padding: 120px 0 80px;
+            padding: 180px 0 120px; /* 间距拉开，更具气场 */
             text-align: center;
         }
 
         #hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
+            font-size: 4.5rem; /* 字体加大，强调视觉冲击 */
+            font-weight: 900;
+            margin-bottom: 25px;
             line-height: 1.1;
         }
 
         #hero p {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: var(--secondary-text);
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
@@ -109,126 +102,107 @@
         }
 
         .section-title {
-            font-size: 2rem;
-            margin-bottom: 40px;
+            margin-bottom: 80px; /* 标题间距拉开 */
             text-align: center;
+            position: relative;
         }
+        
+        .section-title::after {
+            content: 'PORTFOLIO'; /* 增加英文背景层，模仿设计作品的排版元素 */
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 6rem;
+            color: #f7f7f7;
+            font-weight: 900;
+            z-index: -1;
+            letter-spacing: 5px;
+            pointer-events: none;
+        }
+
 
         .gallery-grid {
             display: grid;
-            /* 自动适应列数，最小宽度350px，非常适合作品展示 */
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); /* 基础卡片尺寸微调 */
             gap: 30px;
         }
 
         .project-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: #f9f9f9;
-            aspect-ratio: 4/3; /* 设置图片比例，保持统一 */
+            border-radius: 4px; /* 保持现代方形感 */
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        .project-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* 确保图片填满容器且不变形 */
-            transition: transform 0.5s ease;
-        }
-
-        .project-card:hover img {
-            transform: scale(1.05);
+            transform: translateY(-10px); /* 悬浮效果更明显 */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2); /* 阴影更深 */
         }
 
         .project-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: white;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover .project-info {
-            opacity: 1;
+            padding: 25px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); /* 渐变更深，突出信息 */
+            opacity: 1; /* 默认显示信息，悬停时加强 */
             transform: translateY(0);
         }
 
+        .project-card:hover .project-info {
+            background: linear-gradient(to top, var(--accent-color), rgba(0,0,0,0.95)); /* 悬停时背景色变化，更具动感 */
+        }
+
         .project-info h3 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
+             font-size: 1.3rem;
         }
 
-        .project-info p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* --- 关于我 (About) --- */
+        /* --- 关于我 (About) 布局优化 - 引入分割线和卡片感 --- */
         #about {
             padding: var(--section-spacing) 0;
-            background-color: #f9f9f9;
+            background-color: #f7f7f7;
         }
-
+        
         .about-content {
-            display: flex;
-            gap: 50px;
-            align-items: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .about-image {
-            flex: 1;
-            min-width: 300px;
+             padding: 40px;
+             background: white;
+             border-radius: 8px;
+             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
 
         .about-image img {
-            border-radius: 50%; /* 圆形头像 */
-            /* 如果想要方形，去掉上面这一行 */
-            width: 300px;
-            height: 300px;
-            object-fit: cover;
+            border-radius: 4px; /* 保持方形圆角 */
         }
 
-        .about-text {
-            flex: 2;
+        .about-text h3 {
+             color: var(--accent-color); /* 小标题使用强调色 */
+             border-bottom: 2px solid #eee;
+             padding-bottom: 5px;
+             margin-bottom: 15px;
+             font-weight: 700;
         }
-
-        .about-text h2 {
-            margin-bottom: 20px;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            color: var(--secondary-text);
-        }
-
-        .skills-list {
+        
+        /* 核心优势列表样式优化 */
+        .core-strengths-list {
             list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
+            padding-left: 0;
+            margin-top: 15px;
         }
-
+        
+        .core-strengths-list li {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="%230070f3" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>') no-repeat left 6px;
+            background-size: 16px;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        
+        /* 技能标签区域美化 */
         .skills-list li {
-            background: #eee;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
+            background: #e9e9e9;
+            color: var(--text-color);
+            transition: background 0.3s ease;
+        }
+        
+        .skills-list li:hover {
+            background: var(--accent-color);
+            color: white;
         }
 
         /* --- 联系方式 (Contact) & Footer --- */
@@ -236,55 +210,40 @@
             padding: var(--section-spacing) 0;
             text-align: center;
         }
-
-        .contact-email {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            display: block;
-            margin-bottom: 30px;
+        
+        .contact-email:hover {
+            color: var(--text-color); /* 邮件悬浮时不使用强调色，保持干净 */
         }
-
-        .social-links a {
-            margin: 0 15px;
+        
+        .contact-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: var(--accent-color);
+            color: white;
             font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
-
+        
+        .contact-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            color: white;
+        }
+        
         footer {
-            text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid #eee;
-            font-size: 0.9rem;
-            color: var(--secondary-text);
+            border-top: 1px solid #f0f0f0;
         }
 
         /* --- 移动端适配 (Responsive) --- */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none; /* 手机端暂隐藏菜单，简化处理 */
-            }
-            
             #hero h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
-
-            .about-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .about-image img {
-                width: 200px;
-                height: 200px;
-                margin: 0 auto;
-            }
-            
-            .skills-list {
-                justify-content: center;
-            }
-
-            .contact-email {
-                font-size: 1.5rem;
+            .section-title::after {
+                 font-size: 4rem;
+                 top: -30px;
             }
         }
     </style>
@@ -294,7 +253,7 @@
     <header>
         <div class="container">
             <nav>
-                <a href="#" class="logo">YOUR NAME.</a>
+                <a href="#" class="logo">江振世.</a>
                 <div class="nav-links">
                     <a href="#portfolio">作品</a>
                     <a href="#about">关于</a>
@@ -306,8 +265,8 @@
 
     <section id="hero">
         <div class="container">
-            <h1>你好，我是江振世。<br>一位专注品牌与视觉设计的平面设计师。</h1>
-            <p>我致力于创造简洁、有力且富有策略性的设计解决方案。</p>
+            <h1>江振世 - 高级设计师 | 美术指导。<br>驱动品牌全案与设计创新。</h1>
+            [cite_start]<p>10年视觉设计经验，主导50+企业品牌项目（平安、TCL等）。擅长融合创意与AI技术，提升设计效率与商业价值 [cite: 5, 7, 14, 17]。</p>
         </div>
     </section>
 
@@ -317,52 +276,54 @@
             
             <div class="gallery-grid">
                 <a href="#" class="project-card">
-                    <img src="https://picsum.photos/id/20/800/600" alt="项目名称 1">
+                    <img src="https://picsum.photos/id/1018/800/600" alt="动漫插画风 KV设计">
                     <div class="project-info">
-                        <h3>品牌识别设计</h3>
-                        <p>Logo / VI系统 / 包装</p>
+                        [cite_start]<h3>KV主视觉设计 (动漫插画风) [cite: 65]</h3>
+                        [cite_start]<p>心动力 / 驱动强国梦 / 平安产险项目 [cite: 67, 72, 41]</p>
                     </div>
                 </a>
 
                 <a href="#" class="project-card">
-                    <img src="https://picsum.photos/id/35/800/600" alt="项目名称 2">
+                    <img src="https://picsum.photos/id/1020/800/600" alt="国潮插画风 KV设计">
                     <div class="project-info">
-                        <h3>海报长图</h3>
-                        <p>海报设计 / 排版</p>
+                        [cite_start]<h3>KV主视觉设计 (国潮插画风) [cite: 77]</h3>
+                        [cite_start]<p>中国邮政储蓄银行秋招全案设计 [cite: 15]</p>
                     </div>
                 </a>
 
                 <a href="#" class="project-card">
-                    <img src="https://picsum.photos/id/48/800/600" alt="项目名称 3">
+                    <img src="https://picsum.photos/id/1021/800/600" alt="标志 VI 设计">
                     <div class="project-info">
-                        <h3>网站 UI 设计探索</h3>
-                        <p>网页设计 / 用户界面</p>
+                        [cite_start]<h3>标志设计与VI系统 [cite: 129]</h3>
+                        [cite_start]<p>HC原康医药 / 维动集团 / 深记糕点等品牌焕新 [cite: 20, 28, 130, 137]</p>
                     </div>
                 </a>
 
                 <a href="#" class="project-card">
-                    <img src="https://picsum.photos/id/60/800/600" alt="项目名称 4">
+                    <img src="https://picsum.photos/id/1023/800/600" alt="多故事线 H5设计">
                     <div class="project-info">
-                        <h3>AIGC系列</h3>
-                        <p>三维 / 平面</p>
+                        [cite_start]<h3>H5 交互设计 (多故事线/云发布会) [cite: 106, 114]</h3>
+                        [cite_start]<p>万科集团 / 中信银行信用卡中心项目 [cite: 111, 120]</p>
                     </div>
                 </a>
+                 
                  <a href="#" class="project-card">
-                    <img src="https://picsum.photos/id/119/800/600" alt="项目名称 5">
+                    <img src="https://picsum.photos/id/1024/800/600" alt="长图文设计">
                     <div class="project-info">
-                        <h3>包装设计</h3>
-                        <p>包装设计 / 标签</p>
+                        [cite_start]<h3>长图文/编辑设计 [cite: 101]</h3>
+                        [cite_start]<p>万科集团校招项目，阅读量突破10W+ [cite: 25, 37]</p>
                     </div>
                 </a>
+                 
                  <a href="#" class="project-card">
-                    <img src="https://picsum.photos/id/175/800/600" alt="项目名称 6">
+                    <img src="https://picsum.photos/id/1025/800/600" alt="3D立体风 KV设计">
                     <div class="project-info">
-                        <h3>杂志排版设计</h3>
-                        <p>编辑设计 / 字体排印</p>
+                        [cite_start]<h3>KV主视觉设计 (3D立体风) [cite: 85]</h3>
+                        [cite_start]<p>为储能助力 / 星际悦动等项目 [cite: 88, 90]</p>
                     </div>
                 </a>
-
-                </div>
+                
+            </div>
         </div>
     </section>
 
@@ -374,23 +335,33 @@
                 </div>
                 <div class="about-text">
                     <h2>关于我</h2>
-                    <p>个人简介
-10年视觉设计经验，专注品牌全案与设计创新，2023年起探索AI工具（Midjourney/Stable Diffusion/ChatGPT/DeepSeek）提升设计效率，主导50+企业招聘及品牌项目（平安、TCL等），擅长平衡创意与商业需求，熟悉印刷工艺与数字化设计全流程。
-核心优势
-品牌经验：主导50+企业招聘及品牌项目，涵盖主视觉、VI系统及落地；
-技术整合：2023年起探索AI工具（MidJourney/Stable Diffusion）优化设计流程；
-多语言协作：国语、粤语、英语（CET-4）。</p>
-                    <p>在工作之余，我喜欢摄影、烘焙。</p>
+                    [cite_start]<p>我是**江振世**，拥有**10年视觉设计经验** [cite: 5][cite_start]，专注于品牌全案与设计创新。曾担任高级设计师及美术指导 [cite: 3, 11, 23][cite_start]，主导过50余项企业招聘及品牌项目 [cite: 7, 17][cite_start]，致力于平衡创意与商业需求，熟悉印刷工艺与数字化设计全流程 [cite: 5]。</p>
                     
-                    <ul class="skills-list">
-                        <li>Photoshop</li>
-                        <li>Illustrator</li>
-                        <li>InDesign</li>
-                        <li>Figma</li>
-                        <li>品牌设计</li>
-                        <li>UI/UX</li>
-                        <li>C4D</li>
+                    <h3 style="margin-top: 40px;">核心优势</h3>
+                    <ul class="core-strengths-list">
+                        [cite_start]<li><strong>品牌全案经验：</strong> 主导50+企业招聘及品牌项目，涵盖主视觉、VI系统及全案落地 [cite: 7]。</li>
+                        [cite_start]<li><strong>AI技术整合：</strong> 2023年起探索AI工具（Midjourney/Stable Diffusion/ChatGPT/DeepSeek）优化设计流程，提案效率提升30% [cite: 8, 13, 45]。</li>
+                        [cite_start]<li><strong>项目成果显著：</strong> 设计方案多次助力销售团队成功竞标，长图文阅读量最高达10W+ [cite: 25, 37]。</li>
+                        [cite_start]<li><strong>多语言协作：</strong> 国语、粤语、英语（CET-4），确保高效国际合作 [cite: 9, 47]。</li>
                     </ul>
+                    
+                    <div class="skills-section">
+                        <h3>专业技能</h3>
+                        <ul class="skills-list">
+                            <li>品牌全案</li>
+                            <li>VI系统</li>
+                            <li>主视觉设计</li>
+                            <li>提案支持</li>
+                            <li>印刷工艺</li>
+                            <li>Photoshop</li>
+                            <li>Illustrator</li>
+                            [cite_start]<li>InDesign [cite: 46]</li>
+                            <li>MidJourney (熟练)</li>
+                            <li>Stable Diffusion</li>
+                            <li>ChatGPT</li>
+                            [cite_start]<li>DeepSeek [cite: 45]</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -399,21 +370,24 @@
     <section id="contact">
         <div class="container">
             <h2 class="section-title">合作联系</h2>
-            <p>有有趣的项目想法？欢迎随时通过邮件与我联系。</p>
-            <a href="mailto:your.email@example.com" class="contact-email">your.email@example.com</a>
+            <p style="font-size: 1.1rem; color: var(--text-color);">项目合作，职位邀请，或任何设计相关的交流，欢迎随时联系我。</p>
             
-            <div class="social-links">
-                <a href="#" target="_blank">Behance</a>
-                <a href="#" target="_blank">Dribbble</a>
-                <a href="#" target="_blank">Instagram</a>
-                <a href="#" target="_blank">微博</a>
+            <a href="mailto:stanley.kong@foxmail.com" class="contact-email" style="font-size: 1.5rem; font-weight: 600; color: var(--secondary-text);">stanley.kong@foxmail.com</a>
+            
+            <a href="mailto:stanley.kong@foxmail.com" class="contact-button">立即发送邮件</a>
+            
+            <div class="social-links" style="margin-top: 50px;">
+                <a href="#" target="_blank" style="margin: 0 15px; font-weight: 500;">Behance</a>
+                <a href="#" target="_blank" style="margin: 0 15px; font-weight: 500;">Dribbble</a>
+                <a href="#" target="_blank" style="margin: 0 15px; font-weight: 500;">Instagram</a>
+                <a href="#" target="_blank" style="margin: 0 15px; font-weight: 500;">微博</a>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>© 2023 Your Name. All rights reserved.</p>
+            <p>© 2024 江振世. All rights reserved.</p>
         </div>
     </footer>
 
