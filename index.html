@@ -1,76 +1,427 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8"> 
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>设计师作品集 | Your Name</title>
-    
     <style>
-        /* 基础样式，保证页面渲染 */
-        body {
-            font-family: sans-serif;
+        /* --- CSS 全局变量 & 基础设置 (可在此修改颜色和字体) --- */
+        :root {
+            --bg-color: #ffffff; /* 背景色 */
+            --text-color: #222222; /* 主要文字颜色 */
+            --accent-color: #0056b3; /* 强调色 (链接等) */
+            --secondary-text: #666666; /* 次要文字颜色 */
+            --section-spacing: 80px; /* 区块间距 */
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* 基础重置 */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
 
         .container {
-            max-width: 960px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        h1 {
-            color: #007bff;
+        /* --- 导航栏 (Header / Nav) --- */
+        header {
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid #eee;
         }
 
-        /* 作品集网格 (仅用于简单测试) */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .project-card {
-            border: 1px solid #ccc;
-            padding: 10px;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links a {
+            margin-left: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- 英雄区域 (Hero Section) --- */
+        #hero {
+            padding: 120px 0 80px;
             text-align: center;
         }
 
+        #hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            color: var(--secondary-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- 作品集网格 (Portfolio Grid) --- */
+        #portfolio {
+            padding: var(--section-spacing) 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            /* 自动适应列数，最小宽度350px，非常适合作品展示 */
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #f9f9f9;
+            aspect-ratio: 4/3; /* 设置图片比例，保持统一 */
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
         .project-card img {
-            max-width: 100%;
-            height: auto;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 确保图片填满容器且不变形 */
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .project-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .project-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* --- 关于我 (About) --- */
+        #about {
+            padding: var(--section-spacing) 0;
+            background-color: #f9f9f9;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image img {
+            border-radius: 50%; /* 圆形头像 */
+            /* 如果想要方形，去掉上面这一行 */
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .about-text {
+            flex: 2;
+        }
+
+        .about-text h2 {
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--secondary-text);
+        }
+
+        .skills-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .skills-list li {
+            background: #eee;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* --- 联系方式 (Contact) & Footer --- */
+        #contact {
+            padding: var(--section-spacing) 0;
+            text-align: center;
+        }
+
+        .contact-email {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            margin: 0 15px;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+        }
+
+        /* --- 移动端适配 (Responsive) --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* 手机端暂隐藏菜单，简化处理 */
+            }
+            
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .about-image img {
+                width: 200px;
+                height: 200px;
+                margin: 0 auto;
+            }
+            
+            .skills-list {
+                justify-content: center;
+            }
+
+            .contact-email {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <h1>👋 StanelyKong 的平面设计作品集</h1>
-        <p>如果看到这段文字，说明您的代码已成功渲染！</p>
-        
-        <h2>精选作品</h2>
-        <div class="gallery-grid">
-            <div class="project-card">
-                <img src="images/work1.jpg" alt="项目1">
-                <h3>作品标题一</h3>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">YOUR NAME.</a>
+                <div class="nav-links">
+                    <a href="#portfolio">作品</a>
+                    <a href="#about">关于</a>
+                    <a href="#contact">联系</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h1>你好，我是[你的名字]。<br>一位专注品牌与视觉设计的平面设计师。</h1>
+            <p>我致力于创造简洁、有力且富有策略性的设计解决方案。</p>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title">精选案例</h2>
+            
+            <div class="gallery-grid">
+                <a href="#" class="project-card">
+                    <img src="https://picsum.photos/id/20/800/600" alt="项目名称 1">
+                    <div class="project-info">
+                        <h3>品牌识别设计</h3>
+                        <p>Logo / VI系统 / 包装</p>
+                    </div>
+                </a>
+
+                <a href="#" class="project-card">
+                    <img src="https://picsum.photos/id/35/800/600" alt="项目名称 2">
+                    <div class="project-info">
+                        <h3>艺术展览海报</h3>
+                        <p>海报设计 / 排版</p>
+                    </div>
+                </a>
+
+                <a href="#" class="project-card">
+                    <img src="https://picsum.photos/id/48/800/600" alt="项目名称 3">
+                    <div class="project-info">
+                        <h3>网站 UI 设计探索</h3>
+                        <p>网页设计 / 用户界面</p>
+                    </div>
+                </a>
+
+                <a href="#" class="project-card">
+                    <img src="https://picsum.photos/id/60/800/600" alt="项目名称 4">
+                    <div class="project-info">
+                        <h3>商业插画系列</h3>
+                        <p>数字绘图 / 角色设计</p>
+                    </div>
+                </a>
+                 <a href="#" class="project-card">
+                    <img src="https://picsum.photos/id/119/800/600" alt="项目名称 5">
+                    <div class="project-info">
+                        <h3>咖啡品牌包装</h3>
+                        <p>包装设计 / 标签</p>
+                    </div>
+                </a>
+                 <a href="#" class="project-card">
+                    <img src="https://picsum.photos/id/175/800/600" alt="项目名称 6">
+                    <div class="project-info">
+                        <h3>杂志排版设计</h3>
+                        <p>编辑设计 / 字体排印</p>
+                    </div>
+                </a>
+
+                </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://picsum.photos/id/64/400/400" alt="设计师照片">
+                </div>
+                <div class="about-text">
+                    <h2>关于我</h2>
+                    <p>这里是你的个人简介。可以写你拥有多少年经验，你擅长的风格，你对待设计的理念。例如：我是一名拥有5年经验的平面设计师，目前常驻上海。我热衷于将复杂的概念转化为清晰、美观的视觉语言。</p>
+                    <p>在工作之余，我喜欢摄影、逛展和研究字体设计。我相信好的设计不仅要好看，更要好用。</p>
+                    
+                    <ul class="skills-list">
+                        <li>Photoshop</li>
+                        <li>Illustrator</li>
+                        <li>InDesign</li>
+                        <li>Figma</li>
+                        <li>品牌设计</li>
+                        <li>UI/UX</li>
+                        <li>C4D</li>
+                    </ul>
+                </div>
             </div>
-            <div class="project-card">
-                 <img src="images/work2.jpg" alt="项目2">
-                <h3>作品标题二</h3>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">合作联系</h2>
+            <p>有有趣的项目想法？欢迎随时通过邮件与我联系。</p>
+            <a href="mailto:your.email@example.com" class="contact-email">your.email@example.com</a>
+            
+            <div class="social-links">
+                <a href="#" target="_blank">Behance</a>
+                <a href="#" target="_blank">Dribbble</a>
+                <a href="#" target="_blank">Instagram</a>
+                <a href="#" target="_blank">微博</a>
             </div>
-            </div>
-        
-        <hr style="margin-top: 40px;">
-        <p style="text-align: center;">联系邮箱：your.email@example.com</p>
-    </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Your Name. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
-        // 这是JS代码，如果不包含在正确的 <script> 标签内，也会被当做纯文本显示。
+        /* --- 简单的 JavaScript 实现平滑滚动 --- */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 </body>
 </html>
