@@ -137,7 +137,7 @@
         
         /* --- 返回顶部按钮样式 (已修复) --- */
         #back-to-top {
-            display: none; /* 修正: 保持初始隐藏状态，等待JS切换为flex */
+            display: none; /* 初始隐藏 */
             position: fixed;
             bottom: 30px;
             right: 30px;
@@ -149,7 +149,6 @@
             border: none;
             border-radius: 50%;
             cursor: pointer;
-            /* 居中属性，等待JS切换为display:flex后生效 */
             justify-content: center;
             align-items: center; 
             font-size: 24px;
@@ -252,7 +251,6 @@
         // 当滚动超过 300px 时显示按钮
         window.onscroll = function() {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                // 当显示时，必须设置为 'flex' 才能实现居中
                 backToTopButton.style.display = "flex"; 
             } else {
                 backToTopButton.style.display = "none";

@@ -207,7 +207,7 @@
 
         /* --- 8. 返回顶部按钮样式 --- */
         #back-to-top {
-            display: none; /* 修正: 保持初始隐藏状态，等待JS切换为flex */
+            display: none; /* 初始隐藏 */
             position: fixed;
             bottom: 30px;
             right: 30px;
@@ -219,7 +219,6 @@
             border: none;
             border-radius: 50%;
             cursor: pointer;
-            /* 这些属性是用来居中“↑”的，当JS切换为display:flex后生效 */
             justify-content: center;
             align-items: center; 
             font-size: 24px;
@@ -346,7 +345,7 @@
                             <img src="https://picsum.photos/id/1020/800/600" alt="HC原康医药">
                         </div>
                         <div class="card-info">
-                            <h3>惠康医药标志设计</h3>
+                            <h3>HC原康医药标志设计</h3>
                             <p>品牌标志设计与VI系统建立，医疗行业视觉解决方案。</p>
                             <div class="tech-stack">#标志设计#VI系统</div>
                         </div>
@@ -395,7 +394,7 @@
                             <img src="https://picsum.photos/id/129/800/600" alt="欧派家居H5">
                         </div>
                         <div class="card-info">
-                            <h3>万科地产线上摄影展H5</h3>
+                            <h3>欧派家居线上摄影展H5</h3>
                             <p>扁平风格线上摄影展，适用于品牌活动宣传。</p>
                             <div class="tech-stack">#H5#扁平设计</div>
                         </div>
@@ -421,7 +420,7 @@
                         <li><strong>品牌全案：</strong>主导50+项目(主视觉/VI/落地)</li>
                         <li><strong>AI提效：</strong>熟练Midjourney/Stable Diffusion</li>
                         <li><strong>多语言：</strong>国语、粤语、英语(CET-4)</li>
-                        <li><strong>管理经验：</strong>指导初级设计师，协助跨部门提案竞标</li>
+                        <li><strong>管理经验：：</strong>指导初级设计师，协助跨部门提案竞标</li>
                     </ul>
                     <br>
                     <h4>软件技能</h4>
@@ -517,7 +516,6 @@
         // 当滚动超过 300px 时显示按钮
         window.onscroll = function() {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                // 当显示时，必须设置为 'flex' 才能实现居中
                 backToTopButton.style.display = "flex"; 
             } else {
                 backToTopButton.style.display = "none";
