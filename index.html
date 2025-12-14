@@ -39,10 +39,9 @@
         }
 
         .section-padding { padding: 100px 0; }
-        /* 移动端优化：减小间距 */
         @media (max-width: 768px) {
             .section-padding { padding: 60px 0; }
-            .container { width: 95%; } /* 移动端略微增加宽度 */
+            .container { width: 95%; } 
         }
         
         .section-header { margin-bottom: 60px; }
@@ -68,7 +67,7 @@
         }
 
 
-        /* --- 3. 导航栏 --- */
+        /* --- 3. 导航栏 (略) --- */
         header {
             position: fixed;
             top: 0;
@@ -82,15 +81,13 @@
             display: flex;
             align-items: center;
         }
-        
         nav { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .logo { font-size: 1.2rem; font-weight: 900; letter-spacing: 1px; }
-        
         .nav-links { display: flex; gap: 30px; }
         .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-sub); }
         .nav-links a:hover { color: var(--accent); }
 
-        /* --- 4. 首屏 Hero --- */
+        /* --- 4. 首屏 Hero (略) --- */
         #hero {
             height: 90vh;
             display: flex;
@@ -98,7 +95,6 @@
             background: radial-gradient(circle at 80% 20%, #f0f7ff 0%, #ffffff 40%);
         }
         .hero-content h1 {
-            /* 响应式字体大小 */
             font-size: clamp(2.5rem, 5vw, 4.5rem); 
             line-height: 1.1;
             font-weight: 900;
@@ -115,14 +111,12 @@
             font-weight: 500;
         }
         .tag.ai { background: var(--accent); } 
-
         .hero-desc {
             font-size: 1.2rem;
             color: var(--text-sub);
             max-width: 600px;
             margin-bottom: 40px;
         }
-        
         .btn {
             display: inline-block;
             padding: 12px 30px;
@@ -133,7 +127,6 @@
             transition: background 0.3s;
         }
         .btn:hover { background: #0056e6; }
-        
         @media (max-width: 768px) {
             #hero { height: auto; padding-top: 100px; padding-bottom: 60px; }
             .hero-desc { font-size: 1rem; }
@@ -158,12 +151,9 @@
             transition: 0.3s;
             border: 1px solid var(--border);
         }
-        .work-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
         .card-img { height: 260px; overflow: hidden; position: relative; }
         @media (max-width: 768px) { .card-img { height: 200px; } }
         .card-info { padding: 20px; min-height: 150px; }
-        .card-info h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
-        .card-info p { font-size: 0.95rem; color: var(--text-sub); margin-bottom: 10px; }
         .tech-stack { font-size: 0.8rem; color: var(--accent); font-weight: 500; margin-top: 10px; }
         .card-badge {
             position: absolute;
@@ -184,7 +174,8 @@
         
         .resume-layout {
             display: grid;
-            grid-template-columns: 1fr 1.5fr; 
+            /* 调整左右栏比例 (1:2) */
+            grid-template-columns: 1fr 2fr; 
             gap: 60px;
         }
         
@@ -219,43 +210,43 @@
             line-height: 1.6;
         }
 
-        /* **优化点 1：为时间轴区域增加精致感** */
+        /* 移除时间轴背景色和阴影，还原为简洁背景 */
         .timeline-side {
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* 增加轻微阴影 */
+            padding: 0; 
+            border-radius: 0;
+            box-shadow: none;
         }
-
 
         /* 履历时间轴样式 */
         .timeline-item {
             margin-bottom: 40px;
-            padding-left: 20px; /* 增大左侧留白 */
-            border-left: 3px solid var(--border);
+            padding-left: 25px; 
+            border-left: 2px solid var(--border); 
             position: relative;
+            padding-top: 5px;
+            padding-bottom: 5px; 
         }
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -10px; /* 调整圆点位置 */
-            top: 5px;
-            width: 17px;
-            height: 17px;
+            left: -8px; 
+            top: 10px; 
+            width: 16px;
+            height: 16px;
             background: var(--accent);
             border-radius: 50%;
-            border: 4px solid #fff; /* **优化点 2：圆点外加白边** */
-            outline: 2px solid var(--accent); /* **优化点 3：外圈强调** */
+            border: 4px solid var(--bg-light); 
             box-sizing: border-box;
         }
         .timeline-date {
             font-size: 0.9rem;
             color: var(--text-sub);
             margin-bottom: 5px;
+            font-weight: 500;
         }
         .timeline-role {
-            font-size: 1.1rem;
-            font-weight: 700;
+            font-size: 1.2rem; 
+            font-weight: 800;
             margin-bottom: 5px;
         }
         .timeline-company {
@@ -268,31 +259,34 @@
             color: var(--text-main);
         }
         
-        /* **优化点 4：查看早期履历按钮样式** */
-        #toggle-experience {
-            display: block;
-            width: 100%;
-            text-align: center;
-            margin-top: 10px;
-            padding: 10px 0;
-            background: var(--bg-light);
-            border: 1px solid var(--border);
+        /* **新增：精简版早期履历样式** */
+        .timeline-summary {
+            margin-top: 60px; /* 确保与上方项目有足够间距 */
+            padding: 15px 20px;
+            border-left: 4px solid #cccccc; /* 灰色线条区分 */
+            position: relative;
+            background: #ffffff; /* 浅色背景突出 */
             border-radius: 4px;
-            color: var(--accent);
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-        #toggle-experience:hover {
-            background: #e8f0ff;
-            border-color: var(--accent);
+        .timeline-summary::before {
+            content: '···'; /* 使用点点点替代圆点，表示概括 */
+            position: absolute;
+            left: -20px; 
+            top: 10px;
+            font-size: 24px;
+            color: #999;
+            line-height: 1;
         }
-        /* 隐藏的早期履历 */
-        .old-experience {
-            display: none;
-            /* JS 将控制其显示/隐藏 */
+        .timeline-summary h4 {
+            font-size: 1rem;
+            color: var(--text-sub);
+            margin-bottom: 5px;
         }
-
+        .timeline-summary p {
+            font-size: 0.9rem;
+            color: #999;
+        }
 
         /* --- 7. 联系页 (略) --- */
         #contact { text-align: center; }
@@ -309,7 +303,7 @@
         }
 
 
-        /* --- 8. 返回顶部按钮样式 --- */
+        /* --- 8. 返回顶部按钮样式 (略) --- */
         #back-to-top {
             position: fixed;
             bottom: 30px;
@@ -481,6 +475,7 @@
                 </div>
 
                 <div class="timeline-side">
+                    
                     <div class="timeline-item">
                         <div class="timeline-date">2023.03 – 2024.10</div>
                         <h3 class="timeline-role">高级设计师(P5)</h3>
@@ -511,37 +506,15 @@
                         </p>
                     </div>
 
-                    <div id="old-experience" class="old-experience">
-                        <div class="timeline-item">
-                            <div class="timeline-date">2017.3 – 2018.3</div>
-                            <h3 class="timeline-role">品牌设计师</h3>
-                            <div class="timeline-company">深圳市作为创意设计有限公司</div>
-                            <p class="timeline-desc">
-                                ● 品牌设计：主导深记糕点、十八金燕等品牌VI系统设计；<br>
-                                ● 提案支持：参与中海地产Officezip联合办公空间品牌升级提案。
-                            </p>
-                        </div>
-                         <div class="timeline-item">
-                            <div class="timeline-date">2016.3 – 2017.3</div>
-                            <h3 class="timeline-role">平面设计师</h3>
-                            <div class="timeline-company">深圳时尚商业地产集团</div>
-                            <p class="timeline-desc">
-                                ● 负责深圳7号线华新站地铁商城宣传设计，跟进活动宣传及物料制作。
-                            </p>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">2015.7 – 2016.3</div>
-                            <h3 class="timeline-role">平面设计师</h3>
-                            <div class="timeline-company">深圳市犀牛传播有限公司</div>
-                            <p class="timeline-desc">
-                                ● 完成南宁万科城项目户外广告、展板等日常设计。
-                            </p>
-                        </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2015.7 – 2018.3</div>
+                        <h3 class="timeline-role">早期设计经验整合</h3>
+                        <div class="timeline-company">犀牛传播、时尚商业地产、作为创意设计</div>
+                        <p class="timeline-desc">
+                            ● **核心能力：** 品牌VI系统设计、平面宣传、物料制作和跟进。<br>
+                            ● **主要项目：** 中海地产提案、深记糕点/十八金燕品牌VI、万科城户外广告。
+                        </p>
                     </div>
-                    
-                    <button id="toggle-experience" data-expanded="false">
-                        <span id="button-text">查看 2018 年以前早期履历 (3段) ↓</span>
-                    </button>
                     
                 </div>
             </div>
@@ -595,27 +568,6 @@
                 top: 0,
                 behavior: 'smooth'
             });
-        });
-
-        // **新增：早期履历显示/隐藏逻辑**
-        const toggleButton = document.getElementById('toggle-experience');
-        const oldExperienceDiv = document.getElementById('old-experience');
-        const buttonTextSpan = document.getElementById('button-text');
-
-        toggleButton.addEventListener('click', function() {
-            const isExpanded = this.getAttribute('data-expanded') === 'true';
-
-            if (isExpanded) {
-                // 切换为收起
-                oldExperienceDiv.style.display = 'none';
-                buttonTextSpan.textContent = '查看 2018 年以前早期履历 (3段) ↓';
-                this.setAttribute('data-expanded', 'false');
-            } else {
-                // 切换为展开
-                oldExperienceDiv.style.display = 'block';
-                buttonTextSpan.textContent = '收起早期履历 ↑';
-                this.setAttribute('data-expanded', 'true');
-            }
         });
     </script>
 </body>
