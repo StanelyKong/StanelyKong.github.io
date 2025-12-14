@@ -1,11 +1,76 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>渲染测试页面</title>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设计师作品集 | Your Name</title>
+    
+    <style>
+        /* 基础样式，保证页面渲染 */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        /* 作品集网格 (仅用于简单测试) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .project-card img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>✅ 成功了！您的作品集网站已成功渲染。</h1>
-    <p>如果能看到这段文字，说明部署通道已畅通。</p>
+    <div class="container">
+        <h1>👋 StanelyKong 的平面设计作品集</h1>
+        <p>如果看到这段文字，说明您的代码已成功渲染！</p>
+        
+        <h2>精选作品</h2>
+        <div class="gallery-grid">
+            <div class="project-card">
+                <img src="images/work1.jpg" alt="项目1">
+                <h3>作品标题一</h3>
+            </div>
+            <div class="project-card">
+                 <img src="images/work2.jpg" alt="项目2">
+                <h3>作品标题二</h3>
+            </div>
+            </div>
+        
+        <hr style="margin-top: 40px;">
+        <p style="text-align: center;">联系邮箱：your.email@example.com</p>
+    </div>
+
+    <script>
+        // 这是JS代码，如果不包含在正确的 <script> 标签内，也会被当做纯文本显示。
+    </script>
 </body>
 </html>
