@@ -26,7 +26,7 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             text-rendering: optimizeLegibility;
-            /* **【修正 1】** 增加 body 顶部内边距，防止内容被固定导航栏遮挡 */
+            /* **[核心修复]** 增加 body 顶部内边距，防止内容被固定导航栏遮挡 */
             padding-top: var(--header-height);
         }
 
@@ -72,7 +72,7 @@
             .section-header p { font-size: 1rem; }
         }
 
-        /* --- 3. 导航栏 (保持不变) --- */
+        /* --- 3. 导航栏 --- */
         header {
             position: fixed;
             top: 0;
@@ -82,7 +82,7 @@
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid var(--border);
-            height: var(--header-height); /* 使用变量 */
+            height: var(--header-height);
             display: flex;
             align-items: center;
         }
@@ -94,8 +94,8 @@
 
         /* --- 4. 首屏 Hero --- */
         #hero {
-            /* **【修正 2】** 减去导航栏的高度 */
-            height: calc(90vh - var(--header-height)); 
+            /* 减去导航栏的高度 */
+            height: calc(90vh - var(--header-height));
             display: flex;
             align-items: center;
             background: radial-gradient(circle at 80% 20%, #f0f7ff 0%, #ffffff 40%);
@@ -134,13 +134,12 @@
         }
         .btn:hover { background: #0056e6; }
         @media (max-width: 768px) {
-            /* 手机端高度修正 */
             #hero { height: auto; padding-top: 20px; padding-bottom: 60px; } 
             .hero-desc { font-size: 1rem; }
             .btn { padding: 10px 25px; }
         }
 
-        /* --- 5. 作品集 (保持不变) --- */
+        /* --- 5. 作品集 (精细化排版) --- */
         .portfolio-category { 
             margin-bottom: 80px; 
         }
@@ -214,7 +213,167 @@
             z-index: 10;
         }
 
+        /* --- 5.1 新增：更多作品画廊样式 --- */
+        .gallery-container {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px dashed var(--border); /* 虚线分隔，体现层次 */
+        }
+        
+        .gallery-header {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .gallery-header h4 {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .gallery-header p {
+            font-size: 0.9rem;
+            color: #999;
+        }
 
+        /* 网格布局 */
+        .visual-gallery {
+            display: grid;
+            /* PC端 4列，更紧凑 */
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px;
+        }
+
+        /* 图片容器 */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            cursor: pointer;
+            aspect-ratio: 1 / 1; /* 强制正方形显示，整齐划一 */
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        /* 悬停效果 */
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        .view-icon {
+            color: white;
+            font-size: 1.5rem;
+            background: rgba(255,255,255,0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
+
+        /* 手机端适配 */
+        @media (max-width: 768px) {
+            .visual-gallery {
+                grid-template-columns: repeat(2, 1fr); /* 手机端 2列 */
+                gap: 10px;
+            }
+        }
+
+        /* --- 灯箱 (Lightbox) 样式 --- */
+        .lightbox {
+            display: none; /* 默认隐藏 */
+            position: fixed;
+            z-index: 2000; /* 层级最高 */
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(5px);
+        }
+
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 1000px;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            animation-name: zoom;
+            animation-duration: 0.3s;
+        }
+
+        @keyframes zoom {
+            from {transform:scale(0.9); opacity: 0}
+            to {transform:scale(1); opacity: 1}
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close-lightbox:hover,
+        .close-lightbox:focus {
+            color: var(--accent);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+        }
+        
+        @media (max-width: 768px) {
+            .lightbox-content {
+                width: 95%;
+            }
+            .close-lightbox {
+                right: 20px;
+                top: 10px;
+            }
+        }
         /* --- 6. 简历与经历 (保持不变) --- */
         #about { background: var(--bg-light); } 
         
@@ -358,14 +517,14 @@
             border: none;
             border-radius: 50%;
             cursor: pointer;
-            /* **【修正 3】** 确保箭头居中 */
-            display: flex; 
+            display: flex; /* 修正 3：确保箭头居中 */
             justify-content: center;
             align-items: center; 
             font-size: 24px;
             opacity: 0.8;
             transition: all 0.3s;
             box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
+            display: none; /* 初始隐藏 */
         }
 
         #back-to-top:hover {
@@ -434,15 +593,57 @@
                         <div class="card-info"><h3>TCL集团春季招聘主视觉</h3><p>Midjourney生成创意原型，Stable Diffusion优化细节，提案效率提升30%。</p><div class="tech-stack">#合成#AI#创意</div></div>
                     </a>
                     <a href="projects/post-bank-kv.html" class="work-card">
-                        <div class="card-img"><img src="https://picsum.photos/id/12/800/600" alt="国潮插画"></div>
+                        <div class="card-img"><img src="https://picsum.photos/id/12/800/600" alt="中国邮政储蓄银行秋季招聘"></div>
                         <div class="card-info"><h3>中国邮政储蓄银行秋季招聘</h3><p>国潮插画风格KV设计，负责全案物料延展与落地。</p><div class="tech-stack">#插画#国潮</div></div>
                     </a>
                     <a href="projects/pingan-kv.html" class="work-card">
-                        <div class="card-img"><span class="card-badge">科技感</span><img src="https://picsum.photos/id/14/800/600" alt="平安产险"></div>
+                        <div class="card-img"><span class="card-badge">科技感</span><img src="https://picsum.photos/id/14/800/600" alt="平安产险2023全球校招"></div>
                         <div class="card-info"><h3>平安产险2023全球校招</h3><p>MidJourney生成科技感主视觉方案，覆盖候选人10万+。</p><div class="tech-stack">#AI辅助#科技</div></div>
                     </a>
                 </div>
-            </div>
+
+                <div class="gallery-container">
+                    <div class="gallery-header">
+                        <h4>More Visual Explorations</h4>
+                        <p>更多视觉探索 | 海报 · 插画 · 创意合成 (点击查看大图)</p>
+                    </div>
+
+                    <div class="visual-gallery">
+                        <div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="https://picsum.photos/id/16/600/800" alt="创意海报系列 A：城市与未来">
+                            <div class="gallery-overlay"><span class="view-icon">👁</span></div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="https://picsum.photos/id/17/600/600" alt="节日借势海报：龙年主题">
+                            <div class="gallery-overlay"><span class="view-icon">👁</span></div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="https://picsum.photos/id/18/600/900" alt="产品精修合成：手机科技感">
+                            <div class="gallery-overlay"><span class="view-icon">👁</span></div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="https://picsum.photos/id/19/600/700" alt="AI辅助创意图：赛博朋克风人物">
+                            <div class="gallery-overlay"><span class="view-icon">👁</span></div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="https://picsum.photos/id/25/600/800" alt="品牌延展物料：咖啡店平面设计">
+                            <div class="gallery-overlay"><span class="view-icon">👁</span></div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="https://picsum.photos/id/28/600/600" alt="活动主画面：极简几何风">
+                            <div class="gallery-overlay"><span class="view-icon">👁</span></div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="https://picsum.photos/id/32/600/800" alt="电商Banner：清新食品主题">
+                            <div class="gallery-overlay"><span class="view-icon">👁</span></div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="https://picsum.photos/id/43/600/700" alt="插画练习：卡通角色设计">
+                            <div class="gallery-overlay"><span class="view-icon">👁</span></div>
+                        </div>
+                    </div>
+                </div>
+                </div>
 
             <div class="portfolio-category">
                 <span class="category-title-en">Brand Identity</span>
@@ -454,7 +655,7 @@
                     </a>
                     <a href="projects/huikang.html" class="work-card">
                         <div class="card-img"><img src="https://picsum.photos/id/1020/800/600" alt="HC原康医药"></div>
-                        <div class="card-info"><h3>惠康医药标志设计</h3><p>品牌标志设计与VI系统建立，医疗行业视觉解决方案。</p><div class="tech-stack">#标志设计#VI系统</div></div>
+                        <div class="card-info"><h3>HC原康医药标志设计</h3><p>品牌标志设计与VI系统建立，医疗行业视觉解决方案。</p><div class="tech-stack">#标志设计#VI系统</div></div>
                     </a>
                     <a href="projects/shenji.html" class="work-card">
                         <div class="card-img"><img src="https://picsum.photos/id/24/800/600" alt="深记糕点"></div>
@@ -477,7 +678,7 @@
                     </a>
                     <a href="projects/oppein-h5.html" class="work-card">
                         <div class="card-img"><img src="https://picsum.photos/id/129/800/600" alt="欧派家居H5"></div>
-                        <div class="card-info"><h3>万科地产线上快闪摄影展H5</h3><p>扁平风格线上摄影展，适用于品牌活动宣传。</p><div class="tech-stack">#H5#扁平设计</div></div>
+                        <div class="card-info"><h3>欧派家居线上摄影展H5</h3><p>扁平风格线上摄影展，适用于品牌活动宣传。</p><div class="tech-stack">#H5#扁平设计</div></div>
                     </a>
                 </div>
             </div>
@@ -499,9 +700,9 @@
                     <br>
                     <ul class="core-list">
                         <li><strong>品牌全案：</strong>主导50+项目(主视觉/VI/落地)。</li>
-                        <li><strong>AI提效：</strong>熟练Midjourney/Stable Diffusion，优化设计流程。</li>
-                        <li><strong>多语言：：</strong>国语、粤语、英语(CET-4)。</li>
-                        <li><strong>管理经验：：</strong>指导初级设计师，协助跨部门提案竞标。</li>
+                        <li><strong>AI提效：：</strong>熟练Midjourney/Stable Diffusion，优化设计流程。</li>
+                        <li><strong>多语言：</strong>国语、粤语、英语(CET-4)。</li>
+                        <li><strong>管理经验：</strong>指导初级设计师，协助跨部门提案竞标。</li>
                     </ul>
                     <br>
                     <h4>教育背景</h4>
@@ -526,7 +727,7 @@
                     
                     <div class="timeline-item">
                         <h3 class="timeline-role">高级设计师(P5)</h3>
-                        <span class="timeline-company">猎聘网|广州分公司</span>
+                        <span class="timeline-company">同道精英(天津)信息技术有限公司|广州分公司</span>
                         <span class="timeline-date">2023.03 – 2024.10</span>
                         <div class="timeline-desc">
                             <ul>
@@ -549,7 +750,7 @@
                     </div>
                     <div class="timeline-item">
                         <h3 class="timeline-role">美术指导</h3>
-                        <span class="timeline-company">智联招聘|深圳分公司</span>
+                        <span class="timeline-company">北京网聘咨询有限公司(智联招聘)|深圳分公司</span>
                         <span class="timeline-date">2018.3 – 2020.8</span>
                         <div class="timeline-desc">
                             <ul>
@@ -603,7 +804,13 @@
         <p>© 2025 江振世 Stanley Kong. All rights reserved.</p>
     </footer>
 
-    <button id="back-to-top" title="返回顶部">↑</button> 
+    <div id="lightbox-modal" class="lightbox">
+        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div id="caption"></div>
+    </div>
+
+    <button id="back-to-top" title="返回顶部">↑</button>
 
     <script>
         // 平滑滚动逻辑 (导航栏点击)
@@ -640,6 +847,47 @@
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+
+        // --- 灯箱功能逻辑 ---
+        const lightbox = document.getElementById('lightbox-modal');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const captionText = document.getElementById('caption');
+
+        // 打开灯箱
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            lightbox.style.display = "flex"; // 使用 flex 居中
+            lightbox.style.flexDirection = "column";
+            lightbox.style.justifyContent = "center";
+            lightbox.style.alignItems = "center";
+            
+            lightboxImg.src = img.src.replace(/600\/(\d+)/, '1200/$1'); // 尝试加载更高分辨率的图片
+            captionText.innerHTML = img.alt; // 使用图片的 alt 属性作为说明
+            
+            // 禁止页面滚动
+            document.body.style.overflow = "hidden";
+        }
+
+        // 关闭灯箱
+        function closeLightbox() {
+            lightbox.style.display = "none";
+            // 恢复页面滚动
+            document.body.style.overflow = "auto";
+        }
+
+        // 点击背景关闭
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        // 按 ESC 键关闭
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                closeLightbox();
+            }
         });
     </script>
 </body>
