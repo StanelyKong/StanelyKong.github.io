@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>设计师｜江振世 Stanley Kong</title>
     <style>
-        /* --- 1. 全局变量与重置 --- */
+        /* --- 1. 全局变量与重置 (保持不变) --- */
         :root {
             --bg-body: #ffffff;
             --bg-light: #f8f9fa;
@@ -25,7 +25,7 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             text-rendering: optimizeLegibility;
-            /* 解决固定导航栏遮挡问题 */
+            /* **【功能修正】** 增加 body 顶部内边距，防止内容被悬浮导航栏遮挡 */
             padding-top: 70px; 
         }
 
@@ -33,7 +33,7 @@
         ul { list-style: none; }
         img { width: 100%; height: auto; display: block; object-fit: cover; }
 
-        /* --- 2. 通用组件 --- */
+        /* --- 2. 通用组件 (保持不变) --- */
         .container {
             width: 90%;
             max-width: var(--max-width);
@@ -41,6 +41,12 @@
         }
 
         .section-padding { padding: 100px 0; }
+        @media (max-width: 768px) {
+            .section-padding { padding: 60px 0; }
+            .container { width: 95%; } 
+        }
+        
+        .section-header { margin-bottom: 60px; }
         
         /* 标题样式：极简大气 */
         .section-header h2 {
@@ -57,14 +63,272 @@
             font-size: 1.1rem;
             font-weight: 300; 
         }
+        @media (max-width: 768px) {
+            .section-header h2 { font-size: 2.2rem; }
+            .section-header p { font-size: 1rem; }
+        }
 
-        /* --- 3. 导航栏 (悬浮固定顶部 - PC 默认样式) --- */
+        /* Hero 区域样式 */
+        #hero {
+            height: calc(90vh - 70px); /* 减去导航栏高度 */
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 80% 20%, #f0f7ff 0%, #ffffff 40%);
+        }
+        @media (max-width: 768px) {
+            #hero { 
+                height: auto; 
+                padding-top: 20px; 
+                padding-bottom: 60px; 
+                min-height: auto;
+            }
+        }
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem); 
+            font-weight: 900; 
+            line-height: 1.1; 
+            letter-spacing: -1px; 
+            margin-bottom: 20px;
+        }
+        .hero-content span {
+            color: var(--accent);
+        }
+        .hero-desc {
+            max-width: 600px;
+            font-size: 1.1rem;
+            color: var(--text-sub);
+            margin-bottom: 30px;
+        }
+        .tag {
+            background: var(--text-main);
+            color: #fff;
+            padding: 5px 12px;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            font-weight: 500;
+            display: inline-block;
+            margin-right: 8px;
+            margin-bottom: 15px;
+        }
+        .tag.ai { background: var(--accent); } 
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .btn:hover { background-color: #0056e6; }
+
+        /* 作品集网格样式 */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        @media (max-width: 1024px) {
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .grid-3 { grid-template-columns: 1fr; gap: 20px; }
+        }
+        .work-card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .work-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .card-img {
+            position: relative;
+            height: 200px; 
+            overflow: hidden;
+        }
+        .card-img img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent);
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            z-index: 10;
+        }
+        .card-info {
+            padding: 20px;
+        }
+        .card-info h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--text-main);
+        }
+        .card-info p {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            margin-bottom: 10px;
+        }
+        .tech-stack {
+            font-size: 0.8rem;
+            color: #aaaaaa;
+        }
+        
+        .portfolio-category {
+            margin-bottom: 80px;
+        }
+        .category-title-en {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .category-title-cn {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* 履历布局样式 */
+        .resume-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr; 
+            gap: 60px;
+        }
+        @media (max-width: 768px) {
+             .resume-layout { grid-template-columns: 1fr; gap: 40px; }
+            .profile-side { text-align: center; } 
+            .profile-side img { margin: 0 auto 20px auto; }
+        }
+        .profile-side img {
+            width: 100%;
+            max-width: 180px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .profile-side h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+        .core-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .core-list li::before {
+            content: '•'; 
+            color: var(--accent); 
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        /* 时间轴样式 */
+        .timeline-item {
+            border-left: 3px solid var(--border);
+            padding-left: 20px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.2);
+        }
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            margin-bottom: 15px; 
+            font-weight: 500;
+            display: block;
+        }
+        .timeline-role {
+            font-size: 1.2rem; 
+            font-weight: 800; 
+            line-height: 1.2;
+            margin-bottom: 5px;
+            color: var(--text-main);
+        }
+        .timeline-company {
+            font-size: 1rem;
+            color: #999; 
+            font-weight: 400; 
+            margin-bottom: 5px; 
+            display: block;
+        }
+        .timeline-desc ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        .timeline-desc li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+            color: var(--text-sub);
+        }
+        .timeline-desc li::before {
+            content: '●'; 
+            color: var(--accent); 
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
+        .timeline-desc p {
+            margin: 10px 0 0 0;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+        
+        /* 联系区域样式 */
+        .email-box {
+            display: block;
+            width: fit-content;
+            margin: 40px auto;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 700;
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 5px;
+        }
+        .email-box:hover {
+            color: #0056e6;
+            border-bottom-color: #0056e6;
+        }
+
+        /* --- 3. 导航栏 (悬浮固定顶部) --- */
         header {
-            position: fixed; 
+            position: fixed; /* **【功能实现】** 悬浮固定 */
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(255,255,255,0.98); 
+            background: rgba(255,255,255,0.98); /* 略微提高不透明度 */
             backdrop-filter: blur(8px);
             z-index: 1000;
             border-bottom: 1px solid var(--border);
@@ -74,32 +338,24 @@
         }
         nav { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .logo { font-size: 1.2rem; font-weight: 900; letter-spacing: 1px; }
-        .nav-links { 
-            display: flex; 
-            gap: 30px; /* PC端默认间距 */
-        }
+        .nav-links { display: flex; gap: 30px; }
         .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-sub); }
         .nav-links a:hover { color: var(--accent); }
-
-        /* --- 4. 首屏 Hero (PC 默认样式) --- */
-        #hero {
-            height: calc(90vh - 70px); /* 确保内容位于导航栏之下 */
-            display: flex;
-            align-items: center;
-            background: radial-gradient(circle at 80% 20%, #f0f7ff 0%, #ffffff 40%);
-        }
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem); 
-        }
-
-        /* --- 5. 履历布局 (PC 默认样式) --- */
-        .resume-layout {
-            display: grid;
-            grid-template-columns: 1fr 2fr; /* PC端保持 1:2 布局 */
-            gap: 60px;
+        
+        /* 手机端导航适配（仅调整间距） */
+        @media (max-width: 768px) {
+            .nav-links { 
+                gap: 15px; 
+            }
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+            .logo {
+                font-size: 1rem;
+            }
         }
 
-        /* --- 6. 返回顶部按钮样式 (PC 默认样式) --- */
+        /* --- 4. 返回顶部按钮样式 (PC/Mobile 均显示) --- */
         #back-to-top {
             position: fixed;
             bottom: 30px;
@@ -112,50 +368,25 @@
             border: none;
             border-radius: 50%;
             cursor: pointer;
+            /* 确保箭头居中 */
+            display: flex; 
             justify-content: center;
             align-items: center; 
             font-size: 24px;
             opacity: 0.8;
             transition: all 0.3s;
             box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
+            /* 初始隐藏，由 JS 控制显示 */
             display: none; 
         }
 
-        /* --- 7. 移动端 (小于 768px 时的修正和适配) --- */
+        #back-to-top:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+            background-color: #0056e6;
+        }
+        
         @media (max-width: 768px) {
-            .section-padding { padding: 60px 0; }
-            .container { width: 95%; } 
-            .section-header h2 { font-size: 2.2rem; }
-            .section-header p { font-size: 1rem; }
-
-            #hero { 
-                height: auto; 
-                padding-top: 20px; 
-                padding-bottom: 60px; 
-                min-height: auto; 
-            }
-            
-            /* 手机端导航链接间距调整 */
-            .nav-links { 
-                display: flex; 
-                gap: 15px; 
-            }
-            .nav-links a {
-                font-size: 0.8rem;
-            }
-            .logo {
-                font-size: 1rem;
-            }
-
-            /* 履历布局改为单列 */
-            .resume-layout { 
-                grid-template-columns: 1fr; 
-                gap: 40px; 
-            }
-            .profile-side { text-align: center; } 
-            .profile-side img { margin: 0 auto 20px auto; }
-            
-            /* 返回顶部按钮 */
             #back-to-top {
                  bottom: 20px;
                  right: 20px;
@@ -164,8 +395,7 @@
                  font-size: 20px;
             }
         }
-        
-        /* (其他履历细节样式保持不变，例如 .timeline-date, .timeline-role, .timeline-desc 等) */
+
     </style>
 </head>
 <body>
@@ -206,21 +436,102 @@
                 <h2>精选案例</h2>
                 <p>Selected Work | 涵盖KV主视觉、品牌全案VI及数字化互动体验</p>
             </div>
+            
+            <div class="portfolio-category">
+                <span class="category-title-en">Key Visuals</span>
+                <h3 class="category-title-cn">商业主视觉</h3>
+                <div class="grid-3">
+                    <a href="projects/tcl-kv.html" class="work-card">
+                        <div class="card-img"><span class="card-badge">AI辅助</span><img src="https://picsum.photos/id/10/800/600" alt="TCL招聘主视觉"></div>
+                        <div class="card-info"><h3>TCL集团春季招聘主视觉</h3><p>Midjourney生成创意原型，Stable Diffusion优化细节，提案效率提升30%。</p><div class="tech-stack">#合成#AI#创意</div></div>
+                    </a>
+                    <a href="projects/post-bank-kv.html" class="work-card">
+                        <div class="card-img"><img src="https://picsum.photos/id/12/800/600" alt="国潮插画"></div>
+                        <div class="card-info"><h3>中国邮政储蓄银行秋季招聘</h3><p>国潮插画风格KV设计，负责全案物料延展与落地。</p><div class="tech-stack">#插画#国潮</div></div>
+                    </a>
+                    <a href="projects/pingan-kv.html" class="work-card">
+                        <div class="card-img"><span class="card-badge">科技感</span><img src="https://picsum.photos/id/14/800/600" alt="平安产险"></div>
+                        <div class="card-info"><h3>平安产险2023全球校招</h3><p>MidJourney生成科技感主视觉方案，覆盖候选人10万+。</p><div class="tech-stack">#AI辅助#科技</div></div>
+                    </a>
+                </div>
             </div>
+
+            <div class="portfolio-category">
+                <span class="category-title-en">Brand Identity</span>
+                <h3 class="category-title-cn">品牌识别与升级</h3>
+                <div class="grid-3">
+                    <a href="projects/weidong.html" class="work-card">
+                        <div class="card-img"><img src="https://picsum.photos/id/20/800/600" alt="维动集团 VI"></div>
+                        <div class="card-info"><h3>维动集团品牌焕新</h3><p>完成维动集团、睇房通LOGO焕新，提升品牌识别度。</p><div class="tech-stack">#VI系统#品牌升级</div></div>
+                    </a>
+                    <a href="projects/huikang.html" class="work-card">
+                        <div class="card-img"><img src="https://picsum.photos/id/1020/800/600" alt="HC原康医药"></div>
+                        <div class="card-info"><h3>HC原康医药标志设计</h3><p>品牌标志设计与VI系统建立，医疗行业视觉解决方案。</p><div class="tech-stack">#标志设计#VI系统</div></div>
+                    </a>
+                    <a href="projects/shenji.html" class="work-card">
+                        <div class="card-img"><img src="https://picsum.photos/id/24/800/600" alt="深记糕点"></div>
+                        <div class="card-info"><h3>深记糕点/十八金燕</h3><p>传统消费品品牌升级，包含包装设计与线下物料。</p><div class="tech-stack">#包装#品牌</div></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="portfolio-category">
+                <span class="category-title-en">Digital & H5</span>
+                <h3 class="category-title-cn">数字化体验</h3>
+                <div class="grid-3">
+                    <a href="projects/vanke-long-img.html" class="work-card">
+                        <div class="card-img"><span class="card-badge">10万+阅读量</span><img src="https://picsum.photos/id/29/800/600" alt="万科长图文"></div>
+                        <div class="card-info"><h3>万科集团校招长图文</h3><p>设计方案助力销售团队成功竞标，长图文阅读量最高达10万+。</p><div class="tech-stack">#长图文#排版</div></div>
+                    </a>
+                    <a href="projects/citic-h5.html" class="work-card">
+                        <div class="card-img"><span class="card-badge">交互</span><img src="https://picsum.photos/id/30/800/600" alt="中信银行H5设计"></div>
+                        <div class="card-info"><h3>中信银行信用卡中心H5</h3><p>游戏动画交互H5，负责界面UI及动效逻辑梳理。</p><div class="tech-stack">#H5#UI#交互</div></div>
+                    </a>
+                    <a href="projects/oppein-h5.html" class="work-card">
+                        <div class="card-img"><img src="https://picsum.photos/id/129/800/600" alt="欧派家居H5"></div>
+                        <div class="card-info"><h3>欧派家居线上摄影展H5</h3><p>扁平风格线上摄影展，适用于品牌活动宣传。</p><div class="tech-stack">#H5#扁平设计</div></div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
     </section>
 
     <section id="about" class="section-padding">
         <div class="container">
             <div class="resume-layout">
                 <div class="profile-side">
-                    <div class="section-header"><h2>工作履历</h2><p>Experience</p></div>
+                    <div class="section-header">
+                        <h2>工作履历</h2>
+                        <p>Experience</p>
+                    </div>
                     <img src="https://picsum.photos/id/64/200/200" alt="江振世">
-                    <h4>核心优势</h4><br>
-                    <ul class="core-list"><li><strong>品牌全案：</strong>主导50+项目(主视觉/VI/落地)。</li><li><strong>AI提效：</strong>熟练Midjourney/Stable Diffusion，优化设计流程。</li><li><strong>多语言：</strong>国语、粤语、英语(CET-4)。</li><li><strong>管理经验：</strong>指导初级设计师，协助跨部门提案竞标。</li></ul>
-                    <h4>教育背景</h4><br>
-                    <ul class="core-list"><li><strong>本科:</strong> 深圳大学 | 视觉传达设计 (2020.9– 2024.6)</li><li><strong>大专:</strong> 广东科学技术职业学院 | 多媒体技术 (2012.9– 2015.6)</li></ul>
-                    <h4>软件技能</h4><br>
-                    <div class="hero-tags"><span class="tag">PS</span><span class="tag">AI</span><span class="tag">ID</span><span class="tag ai">Midjourney</span><span class="tag ai">Stable Diffusion</span></div>
+                    
+                    <h4>核心优势</h4>
+                    <br>
+                    <ul class="core-list">
+                        <li><strong>品牌全案：</strong>主导50+项目(主视觉/VI/落地)。</li>
+                        <li><strong>AI提效：</strong>熟练Midjourney/Stable Diffusion，优化设计流程。</li>
+                        <li><strong>多语言：</strong>国语、粤语、英语(CET-4)。</li>
+                        <li><strong>管理经验：</strong>指导初级设计师，协助跨部门提案竞标。</li>
+                    </ul>
+                    <br>
+                    <h4>教育背景</h4>
+                    <br>
+                    <ul class="core-list">
+                        <li><strong>本科:</strong> 深圳大学 | 视觉传达设计 (2020.9– 2024.6)</li>
+                        <li><strong>大专:</strong> 广东科学技术职业学院 | 多媒体技术 (2012.9– 2015.6)</li>
+                    </ul>
+                    <br>
+                    <h4>软件技能</h4>
+                    <br>
+                    <div class="hero-tags">
+                        <span class="tag">PS</span>
+                        <span class="tag">AI</span>
+                        <span class="tag">ID</span>
+                        <span class="tag ai">Midjourney</span>
+                        <span class="tag ai">Stable Diffusion</span>
+                    </div>
                 </div>
 
                 <div class="timeline-side">
@@ -237,6 +548,39 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="timeline-item">
+                        <h3 class="timeline-role">美术指导</h3>
+                        <span class="timeline-company">广州维动广告传媒有限公司</span>
+                        <span class="timeline-date">2021.5 – 2021.8</span>
+                        <div class="timeline-desc">
+                            <ul>
+                                <li>品牌升级：完成维动集团、睇房通LOGO焕新，提升品牌识别度。</li>
+                                <li>流程优化：规范VI手册制定流程，缩短交付周期。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="timeline-role">美术指导</h3>
+                        <span class="timeline-company">北京网聘咨询有限公司(智联招聘)|深圳分公司</span>
+                        <span class="timeline-date">2018.3 – 2020.8</span>
+                        <div class="timeline-desc">
+                            <ul>
+                                <li>主导万科集团、佳兆业等企业招聘视觉设计。</li>
+                                <li>设计方案助力销售团队成功竞标，单一长图文阅读量最高可达10万+。</li>
+                                <li>团队协作：指导初级设计师，协助跨部门提案竞标。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h3 class="timeline-role">设计师/独立项目合作</h3>
+                        <span class="timeline-company">作为创意设计 / 时尚商业地产 / 犀牛传播</span>
+                        <span class="timeline-date">2016.4 – 2018.2</span> 
+                        <div class="timeline-desc">
+                             <p>此阶段主要负责品牌VI系统设计、平面宣传物料制作及跟进。积累了扎实的平面设计基础和印刷品落地经验，项目经验涵盖地产与快消品。</p>
+                        </div>
+                    </div>
+
                     <div class="timeline-item">
                         <h3 class="timeline-role">早期设计经验整合</h3>
                         <span class="timeline-company">初创及自由设计项目</span>
@@ -274,12 +618,11 @@
     <button id="back-to-top" title="返回顶部">↑</button>
 
     <script>
-        // 平滑滚动逻辑 (导航栏点击)
+        // 平滑滚动逻辑
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                document.querySelector(targetId).scrollIntoView({
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
             });
@@ -288,7 +631,9 @@
         // 返回顶部按钮的显示/隐藏和点击事件 JS 逻辑
         const backToTopButton = document.getElementById('back-to-top');
         window.onscroll = function() {
+            // 当滚动条距离顶部超过 300px 时显示按钮
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                // 使用 flex 来保证内部箭头居中
                 backToTopButton.style.display = "flex"; 
             } else {
                 backToTopButton.style.display = "none";
