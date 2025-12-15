@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品案例：TCL集团春季招聘主视觉</title>
+    <style>
+        /* --- 1. 全局变量与重置 (与 index.html 保持一致) --- */
+        :root {
+            --bg-body: #ffffff;
+            --bg-light: #f8f9fa;
+            --text-main: #111111;
+            --text-sub: #666666;
+            --accent: #0066ff; 
+            --border: #eeeeee;
+            --max-width: 1200px;
+            --header-height: 70px; /* 定义导航栏高度变量 */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            /* **【修正 1】** 增加 body 顶部内边距，防止内容被固定导航栏遮挡 */
+            padding-top: var(--header-height);
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { width: 100%; height: auto; display: block; object-fit: cover; }
+
+        /* --- 2. 通用组件 --- */
+        .container {
+            width: 90%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .section-padding { padding: 80px 0; } 
+        @media (max-width: 768px) {
+            .section-padding { padding: 40px 0; }
+            .container { width: 95%; } 
+        }
+        
+        /* --- 3. 导航栏 (与 index.html 保持一致) --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo { font-size: 1.2rem; font-weight: 900; letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-sub); }
+        .nav-links a:hover { color: var(--accent); }
+
+
+        /* --- 4. 详情页特有样式 --- */
+        #project-hero {
+            /* 减去导航栏高度 */
+            padding-top: calc(70px + 70px); 
+            padding-bottom: 80px;
+            text-align: center;
+        }
+        
+        /* 主标题风格同步 (极简大气) */
+        .project-header h1 {
+            font-size: 3.2rem; 
+            font-weight: 900; 
+            line-height: 1.1; 
+            letter-spacing: -1px; 
+            margin-bottom: 5px;
+            color: var(--text-main);
+        }
+        .project-header p {
+            font-size: 1.1rem;
+            font-weight: 300; 
+            color: #999999;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            #project-hero { padding-top: 100px; }
+            .project-header h1 { font-size: 2.2rem; }
+            .project-header p { font-size: 1rem; }
+        }
+
+        /* 标签样式 (与 index.html 保持一致) */
+        .project-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0 50px 0;
+        }
+        .tag {
+            background: var(--text-main);
+            color: #fff;
+            padding: 5px 12px;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        .tag.ai { background: var(--accent); } 
+        
+        /* 详情内容区域 */
+        #project-content {
+            background: #fff;
+        }
+        .content-layout {
+            display: grid;
+            grid-template-columns: 1fr 3fr; 
+            gap: 50px;
+        }
+        @media (max-width: 768px) {
+            .content-layout {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        
+        /* 左侧信息栏 */
+        .info-side {
+            padding-right: 20px;
+            border-right: 1px solid var(--border);
+            text-align: left;
+        }
+        @media (max-width: 768px) {
+            .info-side {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding-bottom: 20px;
+                padding-right: 0;
+            }
+        }
+
+        .info-item {
+            margin-bottom: 30px;
+        }
+        .info-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+        .info-item p {
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        /* 右侧内容详情 */
+        .detail-side {
+            padding: 0;
+        }
+        .detail-side h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border); 
+            padding-bottom: 10px;
+        }
+        .detail-side h3:first-child {
+            margin-top: 0;
+        }
+
+        .detail-side p {
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        .detail-side img {
+            margin: 40px 0; 
+            border-radius: 6px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 1px solid #f0f0f0;
+        }
+        
+        /* 项目列表 */
+        .project-list li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 15px;
+        }
+        .project-list li::before {
+            content: '-';
+            color: var(--text-sub);
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+
+        /* 返回首页按钮 (样式保持不变，仅修改链接) */
+        .back-to-home {
+            margin-top: 80px;
+            text-align: center;
+        }
+        .back-to-home a {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 600;
+            padding: 10px 20px;
+            border: 2px solid var(--accent);
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .back-to-home a:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html#hero" class="logo">STANLEY.KONG</a> 
+                <div class="nav-links">
+                    <a href="index.html#work">作品案例</a>
+                    <a href="index.html#about">核心优势/履历</a> 
+                    <a href="index.html#contact">联系我</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="project-hero">
+        <div class="container">
+            <div class="project-header">
+                <h1>TCL集团春季招聘主视觉</h1>
+                <p>Key Visuals | 以AI辅助设计驱动效率提升</p>
+            </div>
+            
+            <div class="project-tags">
+                <span class="tag">KV设计</span>
+                <span class="tag ai">AI辅助</span>
+                <span class="tag">高效提案</span>
+                <span class="tag">科技感</span>
+            </div>
+
+            <img src="https://picsum.photos/id/10/1200/650" alt="TCL招聘主视觉封面" style="width: 100%; max-width: 900px; margin: 0 auto; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+        </div>
+    </section>
+
+    <section id="project-content" class="section-padding">
+        <div class="container">
+            <div class="content-layout">
+                
+                <div class="info-side">
+                    <div class="info-item">
+                        <h4>项目角色</h4>
+                        <p>高级设计师 / 项目主导</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>服务客户</h4>
+                        <p>TCL集团</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>项目周期</h4>
+                        <p>2023年4月，1周</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>设计工具</h4>
+                        <p>Photoshop, Midjourney, Stable Diffusion</p>
+                    </div>
+                </div>
+
+                <div class="detail-side">
+                    <h3>项目概述与挑战</h3>
+                    <p>
+                        TCL集团春季招聘项目要求主视觉具备**科技感、国际化**的调性，同时必须在极短的提案时间内，提供多套高完成度的方案。这是对设计师效率和创意能力的双重挑战。
+                    </p>
+                    <p>
+                        本次项目我全面引入 AI 辅助设计流程，大幅提升了创意原型的产出速度，最终确保在规定时间内成功交付了高质量方案。
+                    </p>
+
+                    <h3>设计流程与AI应用</h3>
+                    <ul class="project-list">
+                        <li>**创意原型 (Midjourney):** 利用 Midjourney 快速生成多个基于科技、未来、人才的抽象视觉概念。</li>
+                        <li>**细节完善 (Stable Diffusion):** 选定方向后，使用 Stable Diffusion 对关键元素进行细节强化和材质优化。</li>
+                        <li>**合成与定稿 (PS/AI):** 在 Photoshop 中完成人像合成、文字排版、色彩校正，确保视觉效果符合品牌规范。</li>
+                    </ul>
+
+                    <img src="https://picsum.photos/id/11/1200/800" alt="视觉方案草稿">
+                    
+                    <h3>核心成果</h3>
+                    <ul class="project-list">
+                        <li>**效率提升:** 通过 AI 辅助，创意原型产出效率提升**30%**。</li>
+                        <li>**全案输出:** 成功交付包括线上宣传、海报、H5 启动页在内的全套物料。</li>
+                        <li>**客户反馈:** 客户对方案的未来感和科技感高度认可，并表示这是最快收到高完成度方案的一次合作。</li>
+                    </ul>
+
+                    <img src="https://picsum.photos/id/13/1200/800" alt="落地应用图">
+                </div>
+            </div>
+            
+            <div class="back-to-home">
+                 <a href="index.html#work">← 返回作品案例列表</a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid #eee; font-size: 0.85rem; color: #999;">
+        <p>© 2025 江振世 Stanley Kong. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
