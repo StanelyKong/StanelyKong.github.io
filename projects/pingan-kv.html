@@ -14,6 +14,7 @@
             --accent: #0066ff; 
             --border: #eeeeee;
             --max-width: 1200px;
+            --header-height: 70px; /* 定义导航栏高度变量 */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,6 +26,8 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             text-rendering: optimizeLegibility;
+            /* **【修正 1】** 增加 body 顶部内边距，防止内容被固定导航栏遮挡 */
+            padding-top: var(--header-height);
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
@@ -54,7 +57,7 @@
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid var(--border);
-            height: 70px;
+            height: var(--header-height);
             display: flex;
             align-items: center;
         }
@@ -67,7 +70,8 @@
 
         /* --- 4. 详情页特有样式 --- */
         #project-hero {
-            padding-top: 150px; 
+            /* 减去导航栏高度 */
+            padding-top: calc(70px + 70px); 
             padding-bottom: 80px;
             text-align: center;
         }
@@ -197,7 +201,7 @@
             font-weight: 700;
         }
 
-        /* 返回首页按钮 */
+        /* 返回首页按钮 (样式保持不变，仅修改链接) */
         .back-to-home {
             margin-top: 80px;
             text-align: center;
@@ -223,7 +227,7 @@
     <header>
         <div class="container">
             <nav>
-                <a href="index.html" class="logo">STANLEY.KONG</a>
+                <a href="index.html#hero" class="logo">STANLEY.KONG</a> 
                 <div class="nav-links">
                     <a href="index.html#work">作品案例</a>
                     <a href="index.html#about">核心优势/履历</a> 
