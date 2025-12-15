@@ -48,11 +48,11 @@
         
         /* --- 3. 导航栏 (悬浮固定顶部) --- */
         header {
-            position: fixed; /* 修正：改为 fixed 保持悬浮 */
+            position: fixed; 
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(255,255,255,0.98); /* 略微提高不透明度 */
+            background: rgba(255,255,255,0.98); 
             backdrop-filter: blur(8px);
             z-index: 1000;
             border-bottom: 1px solid var(--border);
@@ -69,14 +69,29 @@
 
         /* --- 4. 详情页特有样式 --- */
         #project-hero {
-            padding-top: 80px; /* 调整顶部 padding，因为 body 已经有 70px 的 padding-top */
+            padding-top: 80px; 
             padding-bottom: 80px;
             text-align: center;
         }
         
-        /* (项目信息/标签/详情内容样式保持不变...) */
-
-        /* --- 5. 返回顶部按钮样式 (PC/Mobile 均显示) --- */
+        /* 标签样式 (与 index.html 保持一致) */
+        .project-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0 50px 0;
+        }
+        .tag {
+            background: var(--text-main);
+            color: #fff;
+            padding: 5px 12px;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        .tag.ai { background: var(--accent); } 
+        
+        /* --- 5. 返回顶部按钮样式 --- */
         #back-to-top {
             position: fixed;
             bottom: 30px;
@@ -95,7 +110,7 @@
             opacity: 0.8;
             transition: all 0.3s;
             box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
-            display: none; /* 初始隐藏 */
+            display: none; 
         }
 
         #back-to-top:hover {
@@ -105,7 +120,17 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; } 
+            /* 修正：手机端保留导航链接 */
+            .nav-links { 
+                display: flex; /* 确保链接可见 */
+                gap: 15px; /* 减小间距 */
+            }
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+            .logo {
+                font-size: 1rem;
+            }
             #back-to-top {
                  bottom: 20px;
                  right: 20px;
@@ -155,16 +180,51 @@
             <div class="content-layout">
                 
                 <div class="info-side">
-                    <h4>项目角色</h4>
-                    <p>高级设计师 / 项目主导</p>
+                    <div class="info-item">
+                        <h4>项目角色</h4>
+                        <p>高级设计师 / 项目主导</p>
                     </div>
+                    <div class="info-item">
+                        <h4>服务客户</h4>
+                        <p>TCL集团</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>项目周期</h4>
+                        <p>2023年4月，1周</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>设计工具</h4>
+                        <p>Photoshop, Midjourney, Stable Diffusion</p>
+                    </div>
+                </div>
 
                 <div class="detail-side">
                     <h3>项目概述与挑战</h3>
                     <p>
                         TCL集团春季招聘项目要求主视觉具备**科技感、国际化**的调性，同时必须在极短的提案时间内，提供多套高完成度的方案。这是对设计师效率和创意能力的双重挑战。
                     </p>
-                    </div>
+                    <p>
+                        本次项目我全面引入 AI 辅助设计流程，大幅提升了创意原型的产出速度，最终确保在规定时间内成功交付了高质量方案。
+                    </p>
+
+                    <h3>设计流程与AI应用</h3>
+                    <ul class="project-list">
+                        <li>**创意原型 (Midjourney):** 利用 Midjourney 快速生成多个基于科技、未来、人才的抽象视觉概念。</li>
+                        <li>**细节完善 (Stable Diffusion):** 选定方向后，使用 Stable Diffusion 对关键元素进行细节强化和材质优化。</li>
+                        <li>**合成与定稿 (PS/AI):** 在 Photoshop 中完成人像合成、文字排版、色彩校正，确保视觉效果符合品牌规范。</li>
+                    </ul>
+
+                    <img src="https://picsum.photos/id/11/1200/800" alt="视觉方案草稿">
+                    
+                    <h3>核心成果</h3>
+                    <ul class="project-list">
+                        <li>**效率提升:** 通过 AI 辅助，创意原型产出效率提升**30%**。</li>
+                        <li>**全案输出:** 成功交付包括线上宣传、海报、H5 启动页在内的全套物料。</li>
+                        <li>**客户反馈:** 客户对方案的未来感和科技感高度认可，并表示这是最快收到高完成度方案的一次合作。</li>
+                    </ul>
+
+                    <img src="https://picsum.photos/id/13/1200/800" alt="落地应用图">
+                </div>
             </div>
             
             <div class="back-to-home">
@@ -181,7 +241,7 @@
     <button id="back-to-top" title="返回顶部">↑</button>
 
     <script>
-        // 返回顶部按钮的显示/隐藏和点击事件 JS 逻辑（详情页同样需要）
+        // 返回顶部按钮的显示/隐藏和点击事件 JS 逻辑
         const backToTopButton = document.getElementById('back-to-top');
         window.onscroll = function() {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {

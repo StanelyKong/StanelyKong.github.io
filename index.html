@@ -25,7 +25,7 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             text-rendering: optimizeLegibility;
-            /* 修正：增加 body 顶部内边距，防止内容被固定导航栏遮挡 */
+            /* 解决固定导航栏遮挡问题 */
             padding-top: 70px; 
         }
 
@@ -57,9 +57,6 @@
             margin-bottom: 5px;
             position: relative;
         }
-        .section-header h2::after {
-            content: none; 
-        }
         .section-header p { 
             color: #999999; 
             margin-top: 5px; 
@@ -73,11 +70,11 @@
 
         /* --- 3. 导航栏 (悬浮固定顶部) --- */
         header {
-            position: fixed; /* 修正：改为 fixed 保持悬浮 */
+            position: fixed; 
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(255,255,255,0.98); /* 略微提高不透明度 */
+            background: rgba(255,255,255,0.98); 
             backdrop-filter: blur(8px);
             z-index: 1000;
             border-bottom: 1px solid var(--border);
@@ -91,29 +88,38 @@
         .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-sub); }
         .nav-links a:hover { color: var(--accent); }
 
-        /* --- 4. 首屏 Hero (调整 padding-top 以适应固定导航栏) --- */
+        /* --- 4. 首屏 Hero --- */
         #hero {
-            /* 移除之前 body 上的 padding-top，将其放置到 hero 区域 */
-            height: calc(90vh - 70px); /* 减去导航栏高度 */
+            height: calc(90vh - 70px);
             display: flex;
             align-items: center;
             background: radial-gradient(circle at 80% 20%, #f0f7ff 0%, #ffffff 40%);
-            /* 确保内容在导航栏之下 */
         }
-        /* 修正：由于 body 已经有 padding-top，此处 hero 区域不需要额外的 padding-top 来撑开，保持相对布局即可 */
+        
+        /* --- 5. 响应式调整 --- */
         @media (max-width: 768px) {
             #hero { 
                 height: auto; 
-                padding-top: 20px; /* 相对较小的顶部间距 */
+                padding-top: 20px; 
                 padding-bottom: 60px; 
-                min-height: calc(100vh - 70px);
+                min-height: auto; 
+            }
+            /* 修正：手机端保留导航链接，使用户可以滚动到不同部分 */
+            .nav-links { 
+                display: flex; /* 确保链接可见 */
+                gap: 15px; /* 减小间距 */
+            }
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+            .logo {
+                font-size: 1rem;
             }
         }
 
-
         /* (其他作品集/履历样式保持不变...) */
 
-        /* --- 8. 返回顶部按钮样式 (PC/Mobile 均显示) --- */
+        /* --- 8. 返回顶部按钮样式 --- */
         #back-to-top {
             position: fixed;
             bottom: 30px;
@@ -132,7 +138,6 @@
             opacity: 0.8;
             transition: all 0.3s;
             box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
-            /* 确保初始是隐藏的，由 JS 控制显示/flex */
             display: none; 
         }
 
@@ -143,8 +148,6 @@
         }
         
         @media (max-width: 768px) {
-            /* 手机端导航栏依然显示，但不显示 nav-links */
-            .nav-links { display: none; } 
             #back-to-top {
                  bottom: 20px;
                  right: 20px;
@@ -153,9 +156,53 @@
                  font-size: 20px;
             }
         }
-
-        /* (省略了重复的 resume-layout, card-info, hero-content 等样式，它们保持不变) */
-
+        
+        /* 履历相关样式 (保持不变) */
+        .resume-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr; 
+            gap: 60px;
+        }
+        @media (max-width: 768px) {
+             .resume-layout { grid-template-columns: 1fr; gap: 40px; }
+            .profile-side { text-align: center; } 
+            .profile-side img { margin: 0 auto 20px auto; }
+        }
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            margin-bottom: 15px; 
+            font-weight: 500;
+            letter-spacing: 0; 
+            display: block;
+        }
+        .timeline-role {
+            font-size: 1.2rem; 
+            font-weight: 800; 
+            line-height: 1.2;
+            margin-bottom: 5px;
+            color: var(--text-main);
+        }
+        .timeline-company {
+            font-size: 1rem;
+            color: #999; 
+            font-weight: 400; 
+            margin-bottom: 5px; 
+            display: block;
+        }
+        .timeline-desc li::before {
+            content: '●'; 
+            color: var(--accent); 
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
+        .timeline-desc p {
+            margin: 10px 0 0 0;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
     </style>
 </head>
 <body>
@@ -196,7 +243,6 @@
                 <h2>精选案例</h2>
                 <p>Selected Work | 涵盖KV主视觉、品牌全案VI及数字化互动体验</p>
             </div>
-
             <div class="portfolio-category">
                 <span class="category-title-en">Key Visuals</span>
                 <h3 class="category-title-cn">商业主视觉</h3>
@@ -226,7 +272,7 @@
                     </a>
                     <a href="projects/huikang.html" class="work-card">
                         <div class="card-img"><img src="https://picsum.photos/id/1020/800/600" alt="HC原康医药"></div>
-                        <div class="card-info"><h3>惠康医药标志设计</h3><p>品牌标志设计与VI系统建立，医疗行业视觉解决方案。</p><div class="tech-stack">#标志设计#VI系统</div></div>
+                        <div class="card-info"><h3>HC原康医药标志设计</h3><p>品牌标志设计与VI系统建立，医疗行业视觉解决方案。</p><div class="tech-stack">#标志设计#VI系统</div></div>
                     </a>
                     <a href="projects/shenji.html" class="work-card">
                         <div class="card-img"><img src="https://picsum.photos/id/24/800/600" alt="深记糕点"></div>
@@ -249,7 +295,7 @@
                     </a>
                     <a href="projects/oppein-h5.html" class="work-card">
                         <div class="card-img"><img src="https://picsum.photos/id/129/800/600" alt="欧派家居H5"></div>
-                        <div class="card-info"><h3>万科地产线上快闪摄影展H5</h3><p>扁平风格线上摄影展，适用于品牌活动宣传。</p><div class="tech-stack">#H5#扁平设计</div></div>
+                        <div class="card-info"><h3>欧派家居线上摄影展H5</h3><p>扁平风格线上摄影展，适用于品牌活动宣传。</p><div class="tech-stack">#H5#扁平设计</div></div>
                     </a>
                 </div>
             </div>
@@ -382,7 +428,9 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                // 确保滚动目标是从 #hero 开始
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
                     behavior: 'smooth'
                 });
             });
@@ -391,9 +439,7 @@
         // 返回顶部按钮的显示/隐藏和点击事件 JS 逻辑
         const backToTopButton = document.getElementById('back-to-top');
         window.onscroll = function() {
-            // 当滚动条距离顶部超过 300px 时显示按钮
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                // 修正：将 display 设为 flex 以保持居中对齐
                 backToTopButton.style.display = "flex"; 
             } else {
                 backToTopButton.style.display = "none";
