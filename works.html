@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="江振世 · Stanley Kong — 完整作品集。覆盖品牌设计、招聘视觉、AI 实验等多个方向。" />
+  <title>Works · Stanley Kong Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@200;300;400;500;600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' font-family='serif' font-weight='500'%3ES%3C/text%3E%3C/svg%3E" />
+  <style>
+    .works-hero {
+      padding: 160px var(--gutter, 80px) 80px;
+      max-width: 1440px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .works-hero__index {
+      position: absolute;
+      top: 80px;
+      right: var(--gutter, 80px);
+      font-family: var(--serif);
+      font-size: clamp(160px, 24vw, 320px);
+      font-weight: 200;
+      line-height: 0.8;
+      color: var(--ink);
+      opacity: 0.03;
+      letter-spacing: -0.05em;
+      pointer-events: none;
+      user-select: none;
+    }
+    .works-hero__eyebrow { margin-bottom: 24px; }
+    .works-hero__title {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(48px, 8vw, 104px);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin-bottom: 32px;
+      max-width: 960px;
+      position: relative;
+      z-index: 1;
+    }
+    .works-hero__title em {
+      font-style: normal;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    .works-hero__sub {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      max-width: 540px;
+    }
+    .works-hero__sub strong { color: var(--ink); font-weight: 500; }
+
+    .works-section {
+      padding: 0 var(--gutter, 80px) 140px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    /* Featured large card */
+    .featured-work {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 60px;
+      margin-bottom: 120px;
+      align-items: center;
+      padding-top: 48px;
+      border-top: 1px solid var(--line);
+      position: relative;
+    }
+    .featured-work__media {
+      aspect-ratio: 5 / 4;
+      background: var(--bg-alt);
+      overflow: hidden;
+      position: relative;
+    }
+    .featured-work__content {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .featured-work__no {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .featured-work__no::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+    .featured-work__title {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(32px, 4.5vw, 60px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+    .featured-work__title em {
+      font-style: normal;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    .featured-work__desc {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      max-width: 480px;
+    }
+    .featured-work__desc strong { color: var(--ink); font-weight: 500; }
+    .featured-work__meta {
+      display: flex;
+      gap: 32px;
+      margin-top: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    .featured-work__meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .featured-work__meta-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+    .featured-work__meta-value {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    @media (max-width: 900px) {
+      .works-hero { padding: 130px 24px 60px; }
+      .works-section { padding: 0 24px 80px; }
+      .featured-work { grid-template-columns: 1fr; gap: 32px; margin-bottom: 72px; }
+      .featured-work__meta { flex-wrap: wrap; gap: 20px; }
+    }
+
+    .empty {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--ink-muted);
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      display: none;
+    }
+    .empty.is-visible { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- Registration marks -->
+  <div class="reg-mark reg-mark--tl"></div>
+  <div class="reg-mark reg-mark--tr"></div>
+  <div class="reg-mark reg-mark--bl"></div>
+  <div class="reg-mark reg-mark--br"></div>
+
+  <!-- Side rail -->
+  <div class="side-rail">
+    <span class="side-rail__line"></span>
+    Stanley Kong — All Works
+  </div>
+
+  <!-- ===== Navigation ===== -->
+  <nav class="nav scrolled">
+    <a href="index.html" class="nav__logo">Stanley<em>K.</em></a>
+    <div class="nav__menu">
+      <a href="index.html#work" class="nav__link">Works</a>
+      <a href="index.html#about" class="nav__link">About</a>
+      <a href="index.html#experience" class="nav__link">Journey</a>
+      <a href="works.html" class="nav__link is-active">All Cases</a>
+      <a href="index.html#contact" class="nav__cta"><span>Contact</span></a>
+    </div>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <header class="works-hero">
+    <div class="works-hero__index">W</div>
+    <div class="works-hero__eyebrow eyebrow">All Works · 2015 — 2025</div>
+    <h1 class="works-hero__title text-balance">
+      完整作品集，<br /><em>Complete Works.</em>
+    </h1>
+    <p class="works-hero__sub">
+      共 <strong>11</strong> 个项目，按类别筛选浏览。<br />
+      点击任意项目可查看详细背景与设计过程。
+    </p>
+  </header>
+
+  <!-- ===== Featured: Ping An ===== -->
+  <section class="works-section">
+    <div class="featured-work reveal" id="pingan" data-category="recruitment">
+      <div class="featured-work__media">
+        <div class="art-placeholder art--pingan" data-label="Ping An · 2023 · Global Campus Recruitment"><span>平安</span></div>
+      </div>
+      <div class="featured-work__content">
+        <span class="featured-work__no">Featured · 01</span>
+        <h2 class="featured-work__title">平安产险 <em>2023</em><br />全球校园招聘</h2>
+        <p class="featured-work__desc">
+          用 MidJourney 生成科技感主视觉方案，结合传统设计完成从海报、H5 到线下展会的全案物料输出。设计方案覆盖 <strong>10 万+</strong> 候选人，有效提升品牌传播效率。
+        </p>
+        <div class="featured-work__meta">
+          <div class="featured-work__meta-item">
+            <span class="featured-work__meta-label">Client</span>
+            <span class="featured-work__meta-value">中国平安</span>
+          </div>
+          <div class="featured-work__meta-item">
+            <span class="featured-work__meta-label">Year</span>
+            <span class="featured-work__meta-value">2023</span>
+          </div>
+          <div class="featured-work__meta-item">
+            <span class="featured-work__meta-label">Role</span>
+            <span class="featured-work__meta-value">Lead Designer</span>
+          </div>
+          <div class="featured-work__meta-item">
+            <span class="featured-work__meta-label">Type</span>
+            <span class="featured-work__meta-value">Recruitment</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Filter ===== -->
+    <div class="section__header" style="margin-top:80px;">
+      <div class="section__title-wrap">
+        <span class="section__num">More Projects</span>
+        <h2 class="section__title text-balance reveal">更多项目，<em>More.</em></h2>
+      </div>
+      <div class="filter reveal">
+        <button class="filter__btn is-active" data-filter="all">All <span class="filter__count">10</span></button>
+        <button class="filter__btn" data-filter="recruitment">Recruitment <span class="filter__count">4</span></button>
+        <button class="filter__btn" data-filter="brand">Brand <span class="filter__count">3</span></button>
+        <button class="filter__btn" data-filter="ai">AI Exp <span class="filter__count">2</span></button>
+        <button class="filter__btn" data-filter="other">Space <span class="filter__count">2</span></button>
+      </div>
+    </div>
+
+    <!-- ===== Works Grid ===== -->
+    <div class="works-grid">
+
+      <a href="#" class="work-card reveal" id="tcl" data-category="recruitment ai">
+        <div class="work-card__media">
+          <div class="art-placeholder art--tcl" data-label="TCL · 2024 · Spring Recruitment"><span>TCL</span></div>
+          <div class="work-card__overlay"><span class="work-card__view">View Project →</span></div>
+        </div>
+        <div class="work-card__meta">
+          <h3 class="work-card__title">TCL 集团 2024 春季招聘主视觉</h3>
+          <span class="work-card__client">TCL · 2024</span>
+        </div>
+        <div class="work-card__tags">
+          <span class="work-card__tag">主视觉</span>
+          <span class="work-card__tag">MidJourney</span>
+          <span class="work-card__tag">SD</span>
+        </div>
+      </a>
+
+      <a href="#" class="work-card reveal" id="postbank" data-category="recruitment">
+        <div class="work-card__media">
+          <div class="art-placeholder art--postbank" data-label="PSBC · 2023 · Autumn Recruitment"><span>邮政</span></div>
+          <div class="work-card__overlay"><span class="work-card__view">View Project →</span></div>
+        </div>
+        <div class="work-card__meta">
+          <h3 class="work-card__title">中国邮政储蓄银行秋季招聘</h3>
+          <span class="work-card__client">PSBC · 2023</span>
+        </div>
+        <div class="work-card__tags">
+          <span class="work-card__tag">全案</span>
+          <span class="work-card__tag">主视觉</span>
+          <span class="work-card__tag">线下物料</span>
+        </div>
+      </a>
+
+      <a href="#" class="work-card reveal" id="vanke" data-category="recruitment">
+        <div class="work-card__media">
+          <div class="art-placeholder art--vanke" data-label="Vanke · 2018-19 · Campus"><span>万科</span></div>
+          <div class="work-card__overlay"><span class="work-card__view">View Project →</span></div>
+        </div>
+        <div class="work-card__meta">
+          <h3 class="work-card__title">万科集团 2018-2019 校招全案</h3>
+          <span class="work-card__client">Vanke · 2018</span>
+        </div>
+        <div class="work-card__tags">
+          <span class="work-card__tag">主视觉</span>
+          <span class="work-card__tag">10W+ 长图</span>
+          <span class="work-card__tag">30+ 高校</span>
+        </div>
+      </a>
+
+      <a href="#" class="work-card reveal" id="kaisa" data-category="recruitment">
+        <div class="work-card__media">
+          <div class="art-placeholder art--kaisa" data-label="Kaisa · 2019 · Recruitment"><span>佳兆业</span></div>
+          <div class="work-card__overlay"><span class="work-card__view">View Project →</span></div>
+        </div>
+        <div class="work-card__meta">
+          <h3 class="work-card__title">佳兆业集团 招聘视觉设计</h3>
+          <span class="work-card__client">Kaisa · 2019</span>
+        </div>
+        <div class="work-card__tags">
+          <span class="work-card__tag">主视觉</span>
+          <span class="work-card__tag">H5</span>
+        </div>
+      </a>
+
+      <a href="#" class="work-card reveal" id="brand" data-category="brand">
+        <div class="work-card__media">
+          <div class="art-placeholder art--brand-1" data-label="深记 · 2017 · VI System"><span>深记</span></div>
+          <div class="work-card__overlay"><span class="work-card__view">View Project →</span></div>
+        </div>
+        <div class="work-card__meta">
+          <h3 class="work-card__title">深记糕点 VI 系统设计</h3>
+          <span class="work-card__client">深记 · 2017</span>
+        </div>
+        <div class="work-card__tags">
+          <span class="work-card__tag">VI 系统</span>
+          <span class="work-card__tag">品牌升级</span>
+        </div>
+      </a>
+
+      <a href="#" class="work-card reveal" data-category="brand">
+        <div class="work-card__media">
+          <div class="art-placeholder art--brand-2" data-label="十八金燕 · 2017 · VI"><span>十八金燕</span></div>
+          <div class="work-card__overlay"><span class="work-card__view">View Project →</span></div>
+        </div>
+        <div class="work-card__meta">
+          <h3 class="work-card__title">十八金燕 VI 系统设计</h3>
+          <span class="work-card__client">十八金燕 · 2017</span>
+        </div>
+        <div class="work-card__tags">
+          <span class="work-card__tag">VI 系统</span>
+          <span class="work-card__tag">品牌构建</span>
+        </div>
+      </a>
+
+      <a href="#" class="work-card reveal" data-category="brand">
+        <div class="work-card__media">
+          <div class="art-placeholder art--weidong" data-label="维动 · 2021 · Brand Refresh"><span>维动</span></div>
+          <div class="work-card__overlay"><span class="work-card__view">View Project →</span></div>
+        </div>
+        <div class="work-card__meta">
+          <h3 class="work-card__title">维动集团 LOGO 焕新</h3>
+          <span class="work-card__client">维动 · 2021</span>
+        </div>
+        <div class="work-card__tags">
+          <span class="work-card__tag">品牌焕新</span>
+          <span class="work-card__tag">VI 手册</span>
+        </div>
+      </a>
+
+      <a href="#" class="work-card reveal" data-category="brand">
+        <div class="work-card__media">
+          <div class="art-placeholder art--weidong" data-label="睇房通 · 2021 · LOGO"><span>睇房通</span></div>
+          <div class="work-card__overlay"><span class="work-card__view">View Project →</span></div>
+        </div>
+        <div class="work-card__meta">
+          <h3 class="work-card__title">睇房通 LOGO 焕新</h3>
+          <span class="work-card__client">睇房通 · 2021</span>
+        </div>
+        <div class="work-card__tags">
+          <span class="work-card__tag">品牌焕新</span>
+          <span class="work-card__tag">LOGO</span>
+        </div>
+      </a>
+
+      <a href="#" class="work-card reveal" data-category="other">
+        <div class="work-card__media">
+          <div class="art-placeholder art--officezip" data-label="Officezip · 2018 · Brand"><span>Officezip</span></div>
+          <div class="work-card__overlay"><span class="work-card__view">View Project →</span></div>
+        </div>
+        <div class="work-card__meta">
+          <h3 class="work-card__title">中海地产 Officezip 联合办公品牌升级</h3>
+          <span class="work-card__client">COLI · 2018</span>
+        </div>
+        <div class="work-card__tags">
+          <span class="work-card__tag">联合办公</span>
+          <span class="work-card__tag">品牌升级</span>
+          <span class="work-card__tag">提案</span>
+        </div>
+      </a>
+
+      <a href="#" class="work-card reveal" data-category="other">
+        <div class="work-card__media">
+          <div class="art-placeholder art--metro" data-label="华新站 · 2016 · Commercial"><span>华新站</span></div>
+          <div class="work-card__overlay"><span class="work-card__view">View Project →</span></div>
+        </div>
+        <div class="work-card__meta">
+          <h3 class="work-card__title">深圳 7 号线华新站地铁商城宣传</h3>
+          <span class="work-card__client">时尚商业 · 2016</span>
+        </div>
+        <div class="work-card__tags">
+          <span class="work-card__tag">商业空间</span>
+          <span class="work-card__tag">活动宣传</span>
+        </div>
+      </a>
+
+      <a href="#" class="work-card reveal" data-category="other">
+        <div class="work-card__media">
+          <div class="art-placeholder art--nanning" data-label="万科城 · 2015 · Outdoor"><span>万科城</span></div>
+          <div class="work-card__overlay"><span class="work-card__view">View Project →</span></div>
+        </div>
+        <div class="work-card__meta">
+          <h3 class="work-card__title">南宁万科城项目户外广告</h3>
+          <span class="work-card__client">Vanke NN · 2015</span>
+        </div>
+        <div class="work-card__tags">
+          <span class="work-card__tag">户外广告</span>
+          <span class="work-card__tag">展板</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="empty" id="emptyState">
+      — No matching projects —
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta">
+    <div class="cta__index">04</div>
+    <div class="cta__inner reveal">
+      <h2 class="cta__title text-balance">想看完整项目过程？<br /><em>欢迎来聊。</em></h2>
+      <p class="cta__sub">每个项目背后都有完整的思考路径与设计过程。我很乐意分享。</p>
+      <div class="cta__buttons">
+        <a href="mailto:stanley.kong@foxmail.com" class="btn-primary">
+          <span>发邮件给我</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a href="index.html" class="btn-ghost">
+          ← 返回主页
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <span class="footer__meta">© <span data-year>2025</span> Stanley Kong · Guangzhou, CN</span>
+    <div class="footer__links">
+      <a href="mailto:stanley.kong@foxmail.com" class="footer__link">Email</a>
+      <a href="index.html" class="footer__link">Home</a>
+      <a href="#" class="footer__link">Behance</a>
+      <a href="#" class="footer__link">站酷</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    (function() {
+      const filterButtons = document.querySelectorAll('.filter__btn');
+      const workCards = document.querySelectorAll('[data-category]');
+      const emptyState = document.getElementById('emptyState');
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter;
+          let visibleCount = 0;
+
+          filterButtons.forEach(b => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+
+          workCards.forEach(card => {
+            const categories = card.dataset.category.split(' ');
+            if (filter === 'all' || categories.includes(filter)) {
+              card.style.display = '';
+              requestAnimationFrame(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              });
+              visibleCount++;
+            } else {
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(20px)';
+              setTimeout(() => { card.style.display = 'none'; }, 350);
+            }
+          });
+
+          if (emptyState) {
+            emptyState.classList.toggle('is-visible', visibleCount === 0);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
